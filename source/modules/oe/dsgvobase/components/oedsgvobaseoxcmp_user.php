@@ -27,5 +27,34 @@
  */
 class oeDsgvoBaseOxcmp_user extends oeDsgvoBaseOxcmp_user_parent
 {
+    /**
+     * Deletes user shipping address.
+     */
+    public function oeDsgvoDeleteShippingAddress()
+    {
+        $addressId = oxRegistry::getConfig()->getRequestParameter('oxaddressid');
 
+        $address = oxNew('oxAddress');
+        $address->load($addressId);
+        if ($this->canUserDeleteShippingAddress($address) && $this->getSession()->checkSessionChallenge()) {
+            $address->delete($addressId);
+        }
+    }
+
+    /**
+     * Checks if shipping address is assigned to user.
+     *
+     * @param oxAddress $address
+     * @return bool
+     */
+    private function canUserDeleteShippingAddress($address)
+    {
+        $canDelete = false;
+        $user = $this->getUser();
+        if ($address->oxaddress__oxuserid->value === $user->getId()) {
+            $canDelete = true;
+        }
+
+        return $canDelete;
+    }
 }

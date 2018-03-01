@@ -1,0 +1,12 @@
+.oedsgvobase-delete-shipping-address-button {
+    display: none;
+}
+.modal {
+    display: none;
+}
+.oedsgvobase-modal .close {
+    display: none;
+}
+.modal-footer {
+    text-align: right;
+}

@@ -23,4 +23,7 @@ $sLangName = 'English';
 
 $aLang = array(
     'charset' => 'UTF-8',
+
+    'OESDGVOBASE_DELETE' => 'Delete',
+    'OESDGVOBASE_DELETE_SHIPPING_ADDRESS' => 'Delete shipping address',
 );

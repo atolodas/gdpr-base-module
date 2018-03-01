@@ -57,7 +57,15 @@ $aModule = array(
         'oedsgvobasedeletemyaccountconfirmation_azure.tpl' => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_azure.tpl',
         'oedsgvobasedeletemyaccountconfirmation_flow.tpl'  => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_flow.tpl',
     ),
-    'blocks'      => array(),
+    'blocks'      => array(
+        array('template' => 'layout/base.tpl', 'block'=>'base_style', 'file'=>'/views/blocks/layout/base.tpl'),
+        array('template' => 'form/fieldset/user_shipping.tpl', 'block'=>'form_user_shipping_address_select', 'file' => '/views/blocks/form/fieldset/user_shipping.tpl'),
+        /** Add modals to pages */
+        array('template' => 'form/user.tpl', 'block'=>'user', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
+        array('template' => 'form/user_checkout_change.tpl', 'block'=>'user_checkout_change', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
+        array('template' => 'form/user_checkout_noregistration.tpl', 'block'=>'user_checkout_noregistration', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
+        array('template' => 'form/user_checkout_registration.tpl', 'block'=>'user_checkout_registration', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
+    ),
     'settings'    => array(),
     'events'      => array(
         'onActivate'   => 'oeDsgvoBaseModule::onActivate',

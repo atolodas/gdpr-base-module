@@ -1,0 +1,6 @@
+[{$smarty.block.parent}]
+[{if $oViewConf->getActiveTheme() == 'azure'}]
+    [{oxstyle include=$oViewConf->getModuleUrl('oedsgvobase','out/css/oedsgvobase-azure.css')}]
+[{else}]
+    [{oxstyle include=$oViewConf->getModuleUrl('oedsgvobase','out/css/oedsgvobase-flow.css')}]
+[{/if}]

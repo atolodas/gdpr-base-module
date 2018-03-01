@@ -23,4 +23,7 @@ $sLangName = 'Deutsch';
 
 $aLang = array(
     'charset' => 'UTF-8', // Supports german language specific chars like: ä, ö. ß, etc.
+
+    'OESDGVOBASE_DELETE' => 'Löschen',
+    'OESDGVOBASE_DELETE_SHIPPING_ADDRESS' => 'Lieferadresse löschen',
 );
