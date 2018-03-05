@@ -19,18 +19,16 @@
  * @copyright (C) OXID eSales AG 2003-2018
  */
 
+
 $sLangName = 'English';
 
 $aLang = array(
     'charset' => 'UTF-8',
 
-    'OESDGVOBASE_DELETE'                                  => 'Delete',
-    'OESDGVOBASE_DELETE_SHIPPING_ADDRESS'                 => 'Delete shipping address',
-    'OESDGVOBASE_DELETE_MY_ACCOUNT'                       => 'Delete account',
-    'OEDSGVOBASE_DELETE_MY_ACCOUNT_WARNING'               => 'This action cannot be undone.<br /> This will permanently delete your personal data.',
-    'OEDSGVOBASE_DELETE_MY_ACCOUNT_CONFIRMATION_QUESTION' => 'Are you sure you want to delete your account?',
-    'OESDGVOBASE_DELETE_ACCOUNT_CONFIRMATION'             => 'Yes, delete my account',
-    'OESDGVOBASE_CANCEL_DELETE_ACCOUNT'                   => 'Cancel',
-    'OESDGVOBASE_ERROR_ACCOUNT_NOT_DELETED'               => 'The account could not have been deleted',
-    'OESDGVOBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Account has been deleted',
+    'SHOP_MODULE_GROUP_oedsgvobase_account_settings' => 'Account settings',
+
+    'SHOP_MODULE_blOeDsgvoBaseAllowUsersToDeleteTheirAccount'      => 'Allow shop users to delete their account',
+
+    'SHOP_MODULE_GROUP_oedsgvobase_recommendation_settings' => 'Recommendation settings',
+    'SHOP_MODULE_oeDsgvoBaseAllowRecommendArticle' => 'Allow products to be recommended via e-mail',
 );

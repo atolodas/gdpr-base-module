@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with OXID eSales DSGVO base module.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link      http://www.oxid-esales.com
+ * @link          http://www.oxid-esales.com
  * @copyright (C) OXID eSales AG 2003-2018
  */
 
@@ -43,30 +43,39 @@ $aModule = array(
     'url'         => 'https://www.oxid-esales.com/',
     'email'       => 'info@oxid-esales.com',
     'extend'      => array(
-        'suggest' => 'oe/dsgvobase/controllers/oedsgvobasesuggest',
-        'account' => 'oe/dsgvobase/controllers/oedsgvobaseaccount',
+        'suggest'    => 'oe/dsgvobase/controllers/oedsgvobasesuggest',
+        'account'    => 'oe/dsgvobase/controllers/oedsgvobaseaccount',
         'oxcmp_user' => 'oe/dsgvobase/components/oedsgvobaseoxcmp_user',
-            ),
+        'oxuser'     => 'oe/dsgvobase/models/oedsgvobaseoxuser'
+    ),
     'files'       => array(
-        'oedsgvobasemodule' => 'oe/dsgvobase/core/oedsgvobasemodule.php',
+        'oedsgvobasemodule'                  => 'oe/dsgvobase/core/oedsgvobasemodule.php',
         'oedsgvobaseaccountreviewcontroller' => 'oe/dsgvobase/controllers/oedsgvobaseaccountreviewcontroller.php',
     ),
     'templates' => array(
         'oedsgvobasedashboard_azure.tpl'                   => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedashboard_azure.tpl',
         'oedsgvobasedashboard_flow.tpl'                    => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedashboard_flow.tpl',
-        'oedsgvobasedeletemyaccountconfirmation_azure.tpl' => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_azure.tpl',
-        'oedsgvobasedeletemyaccountconfirmation_flow.tpl'  => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_flow.tpl',
+        'oedsgvobasedeletemyaccountconfirmation_azure_modal.tpl' => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_azure_modal.tpl',
+        'oedsgvobasedeletemyaccountconfirmation_flow_modal.tpl'  => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_flow_modal.tpl',
     ),
     'blocks'      => array(
         array('template' => 'layout/base.tpl', 'block'=>'base_style', 'file'=>'/views/blocks/layout/base.tpl'),
         array('template' => 'form/fieldset/user_shipping.tpl', 'block'=>'form_user_shipping_address_select', 'file' => '/views/blocks/form/fieldset/user_shipping.tpl'),
-        /** Add modals to pages */
         array('template' => 'form/user.tpl', 'block'=>'user', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
         array('template' => 'form/user_checkout_change.tpl', 'block'=>'user_checkout_change', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
         array('template' => 'form/user_checkout_noregistration.tpl', 'block'=>'user_checkout_noregistration', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
         array('template' => 'form/user_checkout_registration.tpl', 'block'=>'user_checkout_registration', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
+        array('template' => 'page/account/dashboard.tpl', 'block'=>'account_dashboard_col1', 'file' => '/views/blocks/page/account/dashboard.tpl'),
+        array('template' => 'page/details/inc/productmain.tpl', 'block'=>'details_productmain_productlinks', 'file' => '/views/blocks/page/details/inc/productmain.tpl'),
     ),
-    'settings'    => array(),
+    'settings' => array(
+        array(
+            'group' => 'oedsgvobase_account_settings',
+            'name'  => 'blOeDsgvoBaseAllowUsersToDeleteTheirAccount',
+            'type'  => 'bool',
+            'value' => 'false'
+        ),
+    ),
     'events'      => array(
         'onActivate'   => 'oeDsgvoBaseModule::onActivate',
         'onDeactivate' => 'oeDsgvoBaseModule::onDeactivate',

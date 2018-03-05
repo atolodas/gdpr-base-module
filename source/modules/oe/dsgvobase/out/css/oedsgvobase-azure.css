@@ -10,3 +10,28 @@
 .modal-footer {
     text-align: right;
 }
+
+#oedsgvobase_delete_my_account_confirmation.ui-dialog-content {
+    padding-top: 7px;
+    padding-bottom: 10px;
+}
+
+.modal-header {
+    font-weight: bold;
+    margin-bottom: 2em;
+    color: #EC6105;
+}
+
+.modal-body {
+    margin-bottom: 1em;
+    color: #29373c;
+}
+
+.modal-footer {
+    text-align: right;
+}
+
+.ui-dialog-content .textButton {
+    text-transform: uppercase;
+    margin-right: 10px;
+}

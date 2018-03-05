@@ -27,5 +27,58 @@
  */
 class oeDsgvoBaseAccount extends oeDsgvoBaseAccount_parent
 {
+    private $oeDsgvoBaseIsUserDeleted = false;
 
+    /**
+     * Deletes User account.
+     */
+    public function oeDsgvoBaseDeleteAccount()
+    {
+        if ($this->oeDsgvoBaseCanBeUserAccountDeleted()) {
+            $user = $this->getUser();
+            $user->delete();
+            $user->logout();
+            $session = $this->getSession();
+            $session->destroy();
+            $this->oeDsgvoBaseIsUserDeleted = true;
+        } else {
+            oxRegistry::get("oxUtilsView")->addErrorToDisplay('OESDGVOBASE_ERROR_ACCOUNT_NOT_DELETED');
+        }
+    }
+
+    /**
+     * Method used to show message in frontend if user was successfully deleted.
+     *
+     * @return bool
+     */
+    public function oeDsgvoBaseIsUserDeleted()
+    {
+        return $this->oeDsgvoBaseIsUserDeleted;
+    }
+
+    /**
+     * Returns true if User is allowed to delete own account.
+     *
+     * @return bool
+     */
+    public function oeDsgvoBaseIsUserAllowedToDeleteOwnAccount()
+    {
+        $allowUsersToDeleteTheirAccount = $this
+            ->getConfig()
+            ->getConfigParam('blOeDsgvoBaseAllowUsersToDeleteTheirAccount');
+
+        $user = $this->getUser();
+
+        return $allowUsersToDeleteTheirAccount && $user && !$user->oeDsgvoBaseIsMallAdmin();
+    }
+
+    /**
+     * Checks if possible to delete user.
+     *
+     * @return bool
+     */
+    protected function oeDsgvoBaseCanBeUserAccountDeleted()
+    {
+        return $this->getSession()->checkSessionChallenge() && $this->oeDsgvoBaseIsUserAllowedToDeleteOwnAccount();
+    }
 }
