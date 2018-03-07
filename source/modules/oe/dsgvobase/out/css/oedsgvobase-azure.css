@@ -22,6 +22,16 @@
     color: #EC6105;
 }
 
+.modal-header h3 {
+    margin-right: 7px;
+}
+
+.modal-header img.oedsgvobase-close {
+    float: right;
+    margin-top: 3px;
+}
+
+
 .modal-body {
     margin-bottom: 1em;
     color: #29373c;

@@ -1,14 +1,15 @@
 [{$smarty.block.parent}]
 
 [{if $oViewConf->getActiveTheme() == 'azure'}]
-    <a id="oedsgvobase-delete-shipping-address-button" class="submitButton largeButton oedsgvobase-delete-shipping-address-button" title="[{oxmultilang ident="OESDGVOBASE_DELETE"}]">[{oxmultilang ident="OESDGVOBASE_DELETE"}]</a>
+    <button id="oedsgvobase-delete-shipping-address-button" class="submitButton largeButton oedsgvobase-delete-shipping-address-button removeButton" title="[{oxmultilang ident="OESDGVOBASE_DELETE"}]"><span>[{oxmultilang ident="OESDGVOBASE_DELETE"}]</span></button>
     [{oxscript include="js/widgets/oxmodalpopup.js" priority=10}]
     [{oxscript add='
         var selectAddressDropDown = $("#addressId");
         var activeAddressId = selectAddressDropDown.val();
         var deleteButton = $("#oedsgvobase-delete-shipping-address-button");
 
-        deleteButton.click(function(){
+        deleteButton.click(function(event){
+            event.preventDefault();
             $("body").oxModalPopup({target: "#delete_shipping_address_"+activeAddressId, openDialog: true, width: "310px"});
             $("#delete_shipping_address_"+activeAddressId).dialog("open");
         });
