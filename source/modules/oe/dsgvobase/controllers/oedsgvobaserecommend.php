@@ -15,20 +15,33 @@
  * You should have received a copy of the GNU General Public License
  * along with OXID eSales DSGVO base module.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link          http://www.oxid-esales.com
+ * @link      http://www.oxid-esales.com
  * @copyright (C) OXID eSales AG 2003-2018
  */
 
+/**
+ * Extends Suggest.
+ *
+ * @see Suggest
+ */
+class oeDsgvoBaseRecommend extends oeDsgvoBaseRecommend_parent
+{
+    /**
+     * Assures, that controller would not be accessed if functionality disabled.
+     */
+    public function init()
+    {
+        $this->redirectToHomeIfDisabled();
+        parent::init();
+    }
 
-$sLangName = 'English';
-
-$aLang = array(
-    'charset' => 'UTF-8',
-
-    'SHOP_MODULE_GROUP_oedsgvobase_account_settings' => 'Account settings',
-
-    'SHOP_MODULE_blOeDsgvoBaseAllowUsersToDeleteTheirAccount'      => 'Allow shop users to delete their account',
-
-    'SHOP_MODULE_GROUP_oedsgvobase_recommendation_settings' => 'Recommendation settings',
-    'SHOP_MODULE_blOeDsgvoBaseAllowRecommendArticle' => 'Allow products to be recommended via e-mail',
-);
+    /**
+     * In case functionality disabled, redirects to home page.
+     */
+    private function redirectToHomeIfDisabled()
+    {
+        if ($this->getConfig()->getConfigParam('blOeDsgvoBaseAllowRecommendArticle') !== true) {
+            oxRegistry::getUtils()->redirect($this->getConfig()->getShopHomeUrl(), true, 301);
+        }
+    }
+}

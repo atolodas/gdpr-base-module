@@ -43,10 +43,11 @@ $aModule = array(
     'url'         => 'https://www.oxid-esales.com/',
     'email'       => 'info@oxid-esales.com',
     'extend'      => array(
-        'suggest'    => 'oe/dsgvobase/controllers/oedsgvobasesuggest',
+        'suggest'    => 'oe/dsgvobase/controllers/oedsgvobaserecommend',
         'account'    => 'oe/dsgvobase/controllers/oedsgvobaseaccount',
         'oxcmp_user' => 'oe/dsgvobase/components/oedsgvobaseoxcmp_user',
-        'oxuser'     => 'oe/dsgvobase/models/oedsgvobaseoxuser'
+        'oxuser'     => 'oe/dsgvobase/models/oedsgvobaseoxuser',
+        'oxViewConfig' => 'oe/dsgvobase/core/oedsgvoviewconfig',
     ),
     'files'       => array(
         'oedsgvobasemodule'                  => 'oe/dsgvobase/core/oedsgvobasemodule.php',
@@ -74,6 +75,12 @@ $aModule = array(
             'name'  => 'blOeDsgvoBaseAllowUsersToDeleteTheirAccount',
             'type'  => 'bool',
             'value' => 'false'
+        ),
+        array(
+            'group' => 'oedsgvobase_recommendation_settings',
+            'name'  => 'blOeDsgvoBaseAllowRecommendArticle',
+            'type'  => 'bool',
+            'value' => 'true'
         ),
     ),
     'events'      => array(

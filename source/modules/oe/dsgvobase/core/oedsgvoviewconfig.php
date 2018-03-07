@@ -20,12 +20,15 @@
  */
 
 /**
- * Class oeDsgvoBaseSuggest.
- * Extends Suggest.
- *
- * @see Suggest
+ * @see oxViewConfig
  */
-class oeDsgvoBaseSuggest extends oeDsgvoBaseSuggest_parent
+class oeDsgvoViewConfig extends oeDsgvoViewConfig_parent
 {
-
+    /**
+     * @return bool
+     */
+    public function oeDsgvoIsRecommendationsEnabled()
+    {
+        return $this->getConfig()->getConfigParam('blOeDsgvoBaseAllowRecommendArticle');
+    }
 }

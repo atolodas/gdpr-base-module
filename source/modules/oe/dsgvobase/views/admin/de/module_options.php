@@ -30,5 +30,5 @@ $aLang = array(
     'SHOP_MODULE_blOeDsgvoBaseAllowUsersToDeleteTheirAccount'      => 'Shopkunden erlauben, ihr Konto zu löschen',
 
     'SHOP_MODULE_GROUP_oedsgvobase_recommendation_settings' => 'Einstellungen für Empfehlungen',
-    'SHOP_MODULE_oeDsgvoBaseAllowRecommendArticle' => 'Empfehlen von Artikeln per E-Mail erlauben',
+    'SHOP_MODULE_blOeDsgvoBaseAllowRecommendArticle' => 'Empfehlen von Artikeln per E-Mail erlauben',
 );
