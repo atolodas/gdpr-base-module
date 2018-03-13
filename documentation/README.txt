@@ -1,5 +1,5 @@
 ==Title==
-Dsgvo Base Module
+GDPR Base Module
 
 ==Author==
 OXID eSales AG
@@ -20,7 +20,7 @@ https://www.oxid-esales.com/
 info@oxid-esales.com
 
 ==Description==
-OE Dsgvo Base Module
+OE GDPR Base Module
 
 ==Installation==
 Activate the module in administration area.

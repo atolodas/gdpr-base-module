@@ -1,19 +1,19 @@
 <?php
 /**
- * This file is part of OXID eSales DSGVO base module.
+ * This file is part of OXID eSales GDPR base module.
  *
- * OXID eSales DSGVO base module is free software: you can redistribute it and/or modify
+ * OXID eSales GDPR base module is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * OXID eSales DSGVO base module is distributed in the hope that it will be useful,
+ * OXID eSales GDPR base module is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with OXID eSales DSGVO base module.  If not, see <http://www.gnu.org/licenses/>.
+ * along with OXID eSales GDPR base module.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @link          http://www.oxid-esales.com
  * @copyright (C) OXID eSales AG 2003-2018
@@ -22,14 +22,14 @@
 /**
  * @see oxUser
  */
-class oeDsgvoBaseOxuser extends oeDsgvoBaseOxuser_parent
+class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
 {
     /**
      * Returns true if User is mall admin.
      *
      * @return bool
      */
-    public function oeDsgvoBaseIsMallAdmin()
+    public function oeGdprBaseIsMallAdmin()
     {
         return 'malladmin' === $this->oxuser__oxrights->value;
     }
@@ -45,8 +45,8 @@ class oeDsgvoBaseOxuser extends oeDsgvoBaseOxuser_parent
         $isDeleted = parent::delete($id);
         if ($isDeleted) {
             $database = oxDb::getDb();
-            $this->oeDsgvoBaseDeleteRecommendationLists($database);
-            $this->oeDsgvoBaseDeleteReviews($database);
+            $this->oeGdprBaseDeleteRecommendationLists($database);
+            $this->oeGdprBaseDeleteReviews($database);
         }
         return $isDeleted;
     }
@@ -56,7 +56,7 @@ class oeDsgvoBaseOxuser extends oeDsgvoBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeDsgvoBaseDeleteRecommendationLists($database)
+    protected function oeGdprBaseDeleteRecommendationLists($database)
     {
         $database->execute(
             'delete 
@@ -85,7 +85,7 @@ class oeDsgvoBaseOxuser extends oeDsgvoBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeDsgvoBaseDeleteReviews(DatabaseInterface $database)
+    protected function oeGdprBaseDeleteReviews(DatabaseInterface $database)
     {
         $database->execute(
             'delete from oxreviews where oxuserid = ?',

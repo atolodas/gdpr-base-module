@@ -1,12 +1,12 @@
 [{$smarty.block.parent}]
 
 [{if $oViewConf->getActiveTheme() == 'azure'}]
-    <button id="oedsgvobase-delete-shipping-address-button" class="submitButton largeButton oedsgvobase-delete-shipping-address-button removeButton" title="[{oxmultilang ident="OESDGVOBASE_DELETE"}]"><span>[{oxmultilang ident="OESDGVOBASE_DELETE"}]</span></button>
+    <button id="oegdprbase-delete-shipping-address-button" class="submitButton largeButton oegdprbase-delete-shipping-address-button removeButton" title="[{oxmultilang ident="OESDGVOBASE_DELETE"}]"><span>[{oxmultilang ident="OESDGVOBASE_DELETE"}]</span></button>
     [{oxscript include="js/widgets/oxmodalpopup.js" priority=10}]
     [{oxscript add='
         var selectAddressDropDown = $("#addressId");
         var activeAddressId = selectAddressDropDown.val();
-        var deleteButton = $("#oedsgvobase-delete-shipping-address-button");
+        var deleteButton = $("#oegdprbase-delete-shipping-address-button");
 
         deleteButton.click(function(event){
             event.preventDefault();
@@ -27,7 +27,7 @@
     '}]
 [{else}]
     [{foreach from=$aUserAddresses item=address name="shippingAdresses"}]
-        <button id="oedsgvobase-delete-shipping-address-button-[{$address->oxaddress__oxid->value}]" class="btn btn-danger btn-xs hasTooltip pull-right dd-action oedsgvobase-delete-shipping-address-button"
+        <button id="oegdprbase-delete-shipping-address-button-[{$address->oxaddress__oxid->value}]" class="btn btn-danger btn-xs hasTooltip pull-right dd-action oegdprbase-delete-shipping-address-button"
                 title="[{oxmultilang ident="OESDGVOBASE_DELETE"}]"
                 data-toggle="modal"
                 data-target="#delete_shipping_address_[{$address->oxaddress__oxid->value}]">
@@ -39,9 +39,9 @@
         var activeButton = $("#shippingAddress .active");
         var editButton = activeButton.parent().parent().find(".dd-edit-shipping-address");
         var activeAddressId = activeButton.find("input[name=oxaddressid]").val();
-        var deleteButton = $("#oedsgvobase-delete-shipping-address-button-"+activeAddressId+"");
+        var deleteButton = $("#oegdprbase-delete-shipping-address-button-"+activeAddressId+"");
         deleteButton.show();
         editButton.after(deleteButton);
-        $( ".dd-add-delivery-address" ).click( function() {  $(".oedsgvobase-delete-shipping-address-button").hide(); } );
+        $( ".dd-add-delivery-address" ).click( function() {  $(".oegdprbase-delete-shipping-address-button").hide(); } );
     '}]
 [{/if}]

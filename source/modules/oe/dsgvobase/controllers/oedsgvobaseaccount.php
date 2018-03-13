@@ -1,46 +1,46 @@
 <?php
 /**
- * This file is part of OXID eSales DSGVO base module.
+ * This file is part of OXID eSales GDPR base module.
  *
- * OXID eSales DSGVO base module is free software: you can redistribute it and/or modify
+ * OXID eSales GDPR base module is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * OXID eSales DSGVO base module is distributed in the hope that it will be useful,
+ * OXID eSales GDPR base module is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with OXID eSales DSGVO base module.  If not, see <http://www.gnu.org/licenses/>.
+ * along with OXID eSales GDPR base module.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @link      http://www.oxid-esales.com
  * @copyright (C) OXID eSales AG 2003-2018
  */
 
 /**
- * Class oeDsgvoBaseAccount.
+ * Class oeGdprBaseAccount.
  * Extends Account.
  *
  * @see Account
  */
-class oeDsgvoBaseAccount extends oeDsgvoBaseAccount_parent
+class oeGdprBaseAccount extends oeGdprBaseAccount_parent
 {
-    private $oeDsgvoBaseIsUserDeleted = false;
+    private $oeGdprBaseIsUserDeleted = false;
 
     /**
      * Deletes User account.
      */
-    public function oeDsgvoBaseDeleteAccount()
+    public function oeGdprBaseDeleteAccount()
     {
-        if ($this->oeDsgvoBaseCanBeUserAccountDeleted()) {
+        if ($this->oeGdprBaseCanBeUserAccountDeleted()) {
             $user = $this->getUser();
             $user->delete();
             $user->logout();
             $session = $this->getSession();
             $session->destroy();
-            $this->oeDsgvoBaseIsUserDeleted = true;
+            $this->oeGdprBaseIsUserDeleted = true;
         } else {
             oxRegistry::get("oxUtilsView")->addErrorToDisplay('OESDGVOBASE_ERROR_ACCOUNT_NOT_DELETED');
         }
@@ -51,9 +51,9 @@ class oeDsgvoBaseAccount extends oeDsgvoBaseAccount_parent
      *
      * @return bool
      */
-    public function oeDsgvoBaseIsUserDeleted()
+    public function oeGdprBaseIsUserDeleted()
     {
-        return $this->oeDsgvoBaseIsUserDeleted;
+        return $this->oeGdprBaseIsUserDeleted;
     }
 
     /**
@@ -61,15 +61,15 @@ class oeDsgvoBaseAccount extends oeDsgvoBaseAccount_parent
      *
      * @return bool
      */
-    public function oeDsgvoBaseIsUserAllowedToDeleteOwnAccount()
+    public function oeGdprBaseIsUserAllowedToDeleteOwnAccount()
     {
         $allowUsersToDeleteTheirAccount = $this
             ->getConfig()
-            ->getConfigParam('blOeDsgvoBaseAllowUsersToDeleteTheirAccount');
+            ->getConfigParam('blOeGdprBaseAllowUsersToDeleteTheirAccount');
 
         $user = $this->getUser();
 
-        return $allowUsersToDeleteTheirAccount && $user && !$user->oeDsgvoBaseIsMallAdmin();
+        return $allowUsersToDeleteTheirAccount && $user && !$user->oeGdprBaseIsMallAdmin();
     }
 
     /**
@@ -77,8 +77,8 @@ class oeDsgvoBaseAccount extends oeDsgvoBaseAccount_parent
      *
      * @return bool
      */
-    protected function oeDsgvoBaseCanBeUserAccountDeleted()
+    protected function oeGdprBaseCanBeUserAccountDeleted()
     {
-        return $this->getSession()->checkSessionChallenge() && $this->oeDsgvoBaseIsUserAllowedToDeleteOwnAccount();
+        return $this->getSession()->checkSessionChallenge() && $this->oeGdprBaseIsUserAllowedToDeleteOwnAccount();
     }
 }

@@ -1,31 +1,31 @@
 <?php
 /**
- * This file is part of OXID eSales DSGVO base module.
+ * This file is part of OXID eSales GDPR base module.
  *
- * OXID eSales DSGVO base module is free software: you can redistribute it and/or modify
+ * OXID eSales GDPR base module is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * OXID eSales DSGVO base module is distributed in the hope that it will be useful,
+ * OXID eSales GDPR base module is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with OXID eSales DSGVO base module.  If not, see <http://www.gnu.org/licenses/>.
+ * along with OXID eSales GDPR base module.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @link      http://www.oxid-esales.com
  * @copyright (C) OXID eSales AG 2003-2018
  */
 
 /**
- * Class oeDsgvoBaseModule
+ * Class oeGdprBaseModule
  * Handles module setup, provides additional tools and module related helpers.
  *
  * @codeCoverageIgnore
  */
-class oeDsgvoBaseModule extends oxModule
+class oeGdprBaseModule extends oxModule
 {
 
     /**
@@ -34,19 +34,19 @@ class oeDsgvoBaseModule extends oxModule
      */
     function __construct()
     {
-        $sModuleId = 'oedsgvobase';
+        $sModuleId = 'oegdprbase';
 
         $this->setModuleData(
             array(
                  'id'          => $sModuleId,
-                 'title'       => 'OE Dsgvo Base',
-                 'description' => 'OE Dsgvo Base Module',
+                 'title'       => 'OE Gdpr Base',
+                 'description' => 'OE Gdpr Base Module',
             )
         );
 
         $this->load($sModuleId);
 
-        oxRegistry::set('oeDsgvoBaseModule', $this);
+        oxRegistry::set('oeGdprBaseModule', $this);
     }
 
 
@@ -101,7 +101,7 @@ class oeDsgvoBaseModule extends oxModule
     public function translate($sCode, $blUseModulePrefix = true)
     {
         if ($blUseModulePrefix) {
-            $sCode = 'OE_DSGVOBASE_' . $sCode;
+            $sCode = 'OE_GDPRBASE_' . $sCode;
         }
 
         return oxRegistry::getLang()->translateString($sCode, oxRegistry::getLang()->getBaseLanguage(), false);
@@ -142,7 +142,7 @@ class oeDsgvoBaseModule extends oxModule
     public function getSetting($sModuleSettingName, $blUseModulePrefix = true)
     {
         if ($blUseModulePrefix) {
-            $sModuleSettingName = 'oeDsgvoBase' . (string) $sModuleSettingName;
+            $sModuleSettingName = 'oeGdprBase' . (string) $sModuleSettingName;
         }
 
         return oxRegistry::getConfig()->getConfigParam((string) $sModuleSettingName);
@@ -155,7 +155,7 @@ class oeDsgvoBaseModule extends oxModule
      */
     public function getPath()
     {
-        return oxRegistry::getConfig()->getModulesDir() . 'oe/dsgvobase/';
+        return oxRegistry::getConfig()->getModulesDir() . 'oe/gdprbase/';
     }
 
 

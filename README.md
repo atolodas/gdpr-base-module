@@ -1,7 +1,7 @@
-DSGVO base module
-=================
+GDPR base module
+================
 
-Module adds base functionality which is required for DS-GVO law.
+Module adds base functionality which is required for GDPR (DSGVO German translation) law.
 
 ## Installation
 

@@ -1,19 +1,19 @@
 <?php
 /**
- * This file is part of OXID eSales DSGVO base module.
+ * This file is part of OXID eSales GDPR base module.
  *
- * OXID eSales DSGVO base module is free software: you can redistribute it and/or modify
+ * OXID eSales GDPR base module is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * OXID eSales DSGVO base module is distributed in the hope that it will be useful,
+ * OXID eSales GDPR base module is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with OXID eSales DSGVO base module.  If not, see <http://www.gnu.org/licenses/>.
+ * along with OXID eSales GDPR base module.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @link          http://www.oxid-esales.com
  * @copyright (C) OXID eSales AG 2003-2018
@@ -28,10 +28,10 @@ $sMetadataVersion = '1.1';
  * Module information
  */
 $aModule = array(
-    'id'          => 'oedsgvobase',
+    'id'          => 'oegdprbase',
     'title'       => array(
-        'de' => 'DSGVO Base',
-        'en' => 'DSGVO Base',
+        'de' => 'GDPR Base',
+        'en' => 'GDPR Base',
     ),
     'description' => array(
         'de' => 'Das Modul stellt Basisfunktionalität für die Datenschutz-Grundverordnung (DSVGO) bereit',
@@ -43,21 +43,21 @@ $aModule = array(
     'url'         => 'https://www.oxid-esales.com/',
     'email'       => 'info@oxid-esales.com',
     'extend'      => array(
-        'suggest'    => 'oe/dsgvobase/controllers/oedsgvobaserecommend',
-        'account'    => 'oe/dsgvobase/controllers/oedsgvobaseaccount',
-        'oxcmp_user' => 'oe/dsgvobase/components/oedsgvobaseoxcmp_user',
-        'oxuser'     => 'oe/dsgvobase/models/oedsgvobaseoxuser',
-        'oxViewConfig' => 'oe/dsgvobase/core/oedsgvoviewconfig',
+        'suggest'    => 'oe/gdprbase/controllers/oegdprbaserecommend',
+        'account'    => 'oe/gdprbase/controllers/oegdprbaseaccount',
+        'oxcmp_user' => 'oe/gdprbase/components/oegdprbaseoxcmp_user',
+        'oxuser'     => 'oe/gdprbase/models/oegdprbaseoxuser',
+        'oxViewConfig' => 'oe/gdprbase/core/oegdprviewconfig',
     ),
     'files'       => array(
-        'oedsgvobasemodule'                  => 'oe/dsgvobase/core/oedsgvobasemodule.php',
-        'oedsgvobaseaccountreviewcontroller' => 'oe/dsgvobase/controllers/oedsgvobaseaccountreviewcontroller.php',
+        'oegdprbasemodule'                  => 'oe/gdprbase/core/oegdprbasemodule.php',
+        'oegdprbaseaccountreviewcontroller' => 'oe/gdprbase/controllers/oegdprbaseaccountreviewcontroller.php',
     ),
     'templates' => array(
-        'oedsgvobasedashboard_azure.tpl'                   => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedashboard_azure.tpl',
-        'oedsgvobasedashboard_flow.tpl'                    => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedashboard_flow.tpl',
-        'oedsgvobasedeletemyaccountconfirmation_azure_modal.tpl' => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_azure_modal.tpl',
-        'oedsgvobasedeletemyaccountconfirmation_flow_modal.tpl'  => 'oe/dsgvobase/views/blocks/page/account/oedsgvobasedeletemyaccountconfirmation_flow_modal.tpl',
+        'oegdprbasedashboard_azure.tpl'                   => 'oe/gdprbase/views/blocks/page/account/oegdprbasedashboard_azure.tpl',
+        'oegdprbasedashboard_flow.tpl'                    => 'oe/gdprbase/views/blocks/page/account/oegdprbasedashboard_flow.tpl',
+        'oegdprbasedeletemyaccountconfirmation_azure_modal.tpl' => 'oe/gdprbase/views/blocks/page/account/oegdprbasedeletemyaccountconfirmation_azure_modal.tpl',
+        'oegdprbasedeletemyaccountconfirmation_flow_modal.tpl'  => 'oe/gdprbase/views/blocks/page/account/oegdprbasedeletemyaccountconfirmation_flow_modal.tpl',
     ),
     'blocks'      => array(
         array('template' => 'layout/base.tpl', 'block'=>'base_style', 'file'=>'/views/blocks/layout/base.tpl'),
@@ -71,20 +71,20 @@ $aModule = array(
     ),
     'settings' => array(
         array(
-            'group' => 'oedsgvobase_account_settings',
-            'name'  => 'blOeDsgvoBaseAllowUsersToDeleteTheirAccount',
+            'group' => 'oegdprbase_account_settings',
+            'name'  => 'blOeGdprBaseAllowUsersToDeleteTheirAccount',
             'type'  => 'bool',
             'value' => 'false'
         ),
         array(
-            'group' => 'oedsgvobase_recommendation_settings',
-            'name'  => 'blOeDsgvoBaseAllowRecommendArticle',
+            'group' => 'oegdprbase_recommendation_settings',
+            'name'  => 'blOeGdprBaseAllowRecommendArticle',
             'type'  => 'bool',
             'value' => 'true'
         ),
     ),
     'events'      => array(
-        'onActivate'   => 'oeDsgvoBaseModule::onActivate',
-        'onDeactivate' => 'oeDsgvoBaseModule::onDeactivate',
+        'onActivate'   => 'oeGdprBaseModule::onActivate',
+        'onDeactivate' => 'oeGdprBaseModule::onDeactivate',
     ),
 );

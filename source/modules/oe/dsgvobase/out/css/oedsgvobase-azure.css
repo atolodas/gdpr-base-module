@@ -1,17 +1,17 @@
-.oedsgvobase-delete-shipping-address-button {
+.oegdprbase-delete-shipping-address-button {
     display: none;
 }
 .modal {
     display: none;
 }
-.oedsgvobase-modal .close {
+.oegdprbase-modal .close {
     display: none;
 }
 .modal-footer {
     text-align: right;
 }
 
-#oedsgvobase_delete_my_account_confirmation.ui-dialog-content {
+#oegdprbase_delete_my_account_confirmation.ui-dialog-content {
     padding-top: 7px;
     padding-bottom: 10px;
 }
@@ -26,7 +26,7 @@
     margin-right: 7px;
 }
 
-.modal-header img.oedsgvobase-close {
+.modal-header img.oegdprbase-close {
     float: right;
     margin-top: 3px;
 }
