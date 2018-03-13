@@ -47,6 +47,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
             $database = oxDb::getDb();
             $this->oeGdprBaseDeleteRecommendationLists($database);
             $this->oeGdprBaseDeleteReviews($database);
+            $this->oeGdprBaseDeleteRatings($database);
         }
         return $isDeleted;
     }
@@ -85,10 +86,23 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeGdprBaseDeleteReviews(DatabaseInterface $database)
+    protected function oeGdprBaseDeleteReviews($database)
     {
         $database->execute(
             'delete from oxreviews where oxuserid = ?',
+            array($this->getId())
+        );
+    }
+
+    /**
+     * Deletes User ratings.
+     *
+     * @param DatabaseInterface $database
+     */
+    protected function oeGdprBaseDeleteRatings($database)
+    {
+        $database->execute(
+            'delete from oxratings where oxuserid = ?',
             array($this->getId())
         );
     }

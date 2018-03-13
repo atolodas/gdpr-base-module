@@ -88,6 +88,12 @@ class oeGdprBaseOxUserTest extends OxidTestCase
         $recommendationList->oxrecommlists__oxtitle = new oxField("Test title");
         $recommendationList->save();
 
+        $rating = oxNew('oxRating');
+        $rating->setId("_testRating");
+        $rating->oxratings__oxuserid = new oxField($sUserId);
+        $rating->oxratings__oxrating = new oxField(5);
+        $rating->save();
+
         $review = oxNew('oxReview');
         $review->setId("_testReview");
         $review->oxreviews__oxuserid = new oxField($sUserId);
@@ -106,6 +112,7 @@ class oeGdprBaseOxUserTest extends OxidTestCase
             'oxnewssubscribed'  => 'oxuserid',
             'oxrecommlists'     => 'oxuserid',
             'oxreviews'         => 'oxuserid',
+            'oxratings'         => 'oxuserid',
             'oxobject2delivery' => 'oxobjectid',
             'oxobject2discount' => 'oxobjectid',
             'oxobject2group'    => 'oxobjectid',
