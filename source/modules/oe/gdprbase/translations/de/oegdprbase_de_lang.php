@@ -32,5 +32,5 @@ $aLang = array(
     'OESDGVOBASE_DELETE_ACCOUNT_CONFIRMATION'             => 'Ja, Konto löschen',
     'OESDGVOBASE_CANCEL_DELETE_ACCOUNT'                   => 'Abbrechen',
     'OESDGVOBASE_ERROR_ACCOUNT_NOT_DELETED'               => 'Das Konto konnte nicht gelöscht werden',
-    'OESDGVOBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Account has been deleted',
+    'OESDGVOBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Ihr Konto wurde gelöscht',
 );
