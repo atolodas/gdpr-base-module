@@ -1,22 +1,37 @@
 GDPR base module
 ================
 
-Module adds base functionality which is required for GDPR (DSGVO German translation) law.
+Module provides base functionality which is required for [GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation).
+
+## Requirements
+
+* OXID eShop 5.3/4.10 releases: 5.3.7/4.10.7 or above
 
 ## Installation
 
-For installation instructions please see /documentation/UserManual_de.pdf in this package. Please note that for previous
-shop releases, this module requires the following OXID eShop versions:
+* Download module source:
 
-* 5.3/4.10 releases: 5.3.7/4.10.7 or above
+```
+git clone --depth=1 --branch=master https://github.com/OXID-eSales/gdpr-base-module.git
+```
+
+* Copy module contents to the OXID eShop:
+
+```
+cp -r gdpr-base-module/source/* <path_to_your_oxid_eshop>
+```
+
+* Activate module in admin area.
+
+For more detailed instructions how to install module please see `/documentation/UserManual_de.pdf` in this package.
 
 ## Features
 
-Module allows to control:
-* if a shop user can manage his product reviews.
-* if a shop user can delete shipping addresses.
-* if a shop user can delete their account.
-* the recommendation function in the backend.
+Module provides functionality which allows:
+* To control recommendation function via OXID eShop admin.
+* Users to manage their reviews.
+* Users to delete their shipping addresses.
+* Users to delete their account.
 
 ## License
 

@@ -20,7 +20,7 @@ https://www.oxid-esales.com/
 info@oxid-esales.com
 
 ==Description==
-OE GDPR Base Module
+Module adds base functionality which is required for GDPR (DSGVO German translation) law.
 
 ==Installation==
 Activate the module in administration area.
@@ -29,10 +29,8 @@ Activate the module in administration area.
  * suggest
  * account
  * oxcmp_user
-
-==Modules==
-
-==Modified original templates==
+ * oxuser
+ * oxViewConfig
 
 ==Uninstall==
 Disable the module in administration area and delete module folder.
