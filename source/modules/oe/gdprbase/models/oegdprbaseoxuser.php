@@ -57,28 +57,13 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeGdprBaseDeleteRecommendationLists($database)
+    protected function oeGdprBaseDeleteRecommendationLists(DatabaseInterface $database)
     {
-        $database->execute(
-            'delete 
-                    oxobject2list
-            
-                from
-                    oxobject2list
-                
-                inner join oxrecommlists 
-                    on oxobject2list.oxlistid = oxrecommlists.oxid 
-                
-                where 
-                    oxrecommlists.oxuserid = ?
-            ',
-            array($this->getId())
-        );
-
-        $database->execute(
-            'delete from oxrecommlists where oxuserid = ?',
-            array($this->getId())
-        );
+        $recommendationList = $this->getUserRecommLists($this->getId());
+        /** @var oxRecommList $recommendation */
+        foreach ($recommendationList as $recommendation) {
+            $recommendation->delete();
+        }
     }
 
     /**
@@ -86,12 +71,15 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeGdprBaseDeleteReviews($database)
+    private function oeGdprBaseDeleteReviews(DatabaseInterface $database)
     {
-        $database->execute(
-            'delete from oxreviews where oxuserid = ?',
-            array($this->getId())
-        );
+        $reviews = $database->getAll('select * from oxreviews where oxuserid = ?', array($this->getId()));
+        foreach ($reviews as $reviewId) {
+            $review = oxNew('oxReview');
+            $review->load($reviewId[0]);
+            $review->delete();
+        }
+        $database->setFetchMode(DatabaseInterface::FETCH_MODE_NUM);
     }
 
     /**
@@ -99,11 +87,14 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeGdprBaseDeleteRatings($database)
+    private function oeGdprBaseDeleteRatings(DatabaseInterface $database)
     {
-        $database->execute(
-            'delete from oxratings where oxuserid = ?',
-            array($this->getId())
-        );
+        $ratings = $database->getAll('select * from oxratings where oxuserid = ?', array($this->getId()));
+        foreach ($ratings as $ratingId) {
+            $rating = oxNew('oxRating');
+            $rating->load($ratingId[0]);
+            $rating->delete();
+        }
+        $database->setFetchMode(DatabaseInterface::FETCH_MODE_NUM);
     }
 }
