@@ -34,7 +34,7 @@ $aModule = array(
         'en' => 'GDPR Base',
     ),
     'description' => array(
-        'de' => 'Das Modul stellt Basisfunktionalität für die Datenschutz-Grundverordnung (DSVGO) bereit',
+        'de' => 'Das Modul stellt Basisfunktionalit&auml;t f&uuml;r die Datenschutz-Grundverordnung (DSVGO) bereit',
         'en' => 'This module provides the basic functionality for the European General Data Protection Regulation (GDPR)',
     ),
     'thumbnail'   => 'out/pictures/logo.png',
