@@ -100,6 +100,18 @@ class oeGdprBaseOxUserTest extends OxidTestCase
         $review->oxreviews__oxtext = new oxField("Supergood");
         $review->save();
 
+        $priceAlarm = oxNew('oxPricealarm');
+        $priceAlarm->setId("_testPriceAlarm");
+        $priceAlarm->oxpricealarm__oxuserid = new oxField($sUserId);
+        $priceAlarm->save();
+
+        $userPayment = oxNew('oxUserPayment');
+        $userPayment->setId("_testUserPayment");
+        $userPayment->oxuserpayments__oxuserid = new oxField($sUserId);
+        $userPayment->save();
+
+        $oDb->execute("INSERT INTO oxacceptedterms (oxuserid) VALUES(?)", array($sUserId));
+
         $oUser = oxNew('oxUser');
         $oUser->load($sUserId);
         $bSuccess = $oUser->delete();
@@ -113,6 +125,9 @@ class oeGdprBaseOxUserTest extends OxidTestCase
             'oxrecommlists'     => 'oxuserid',
             'oxreviews'         => 'oxuserid',
             'oxratings'         => 'oxuserid',
+            'oxpricealarm'      => 'oxuserid',
+            'oxuserpayments'    => 'oxuserid',
+            'oxacceptedterms'   => 'oxuserid',
             'oxobject2delivery' => 'oxobjectid',
             'oxobject2discount' => 'oxobjectid',
             'oxobject2group'    => 'oxobjectid',

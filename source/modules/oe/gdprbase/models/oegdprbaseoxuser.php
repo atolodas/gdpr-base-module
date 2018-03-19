@@ -48,6 +48,9 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
             $this->oeGdprBaseDeleteRecommendationLists($database);
             $this->oeGdprBaseDeleteReviews($database);
             $this->oeGdprBaseDeleteRatings($database);
+            $this->oeGdprBasedeletePriceAlarms($database);
+            $this->oeGdprBasedeleteUserPayments($database);
+            $this->oeGdprBasedeleteAcceptedTerms($database);
         }
         return $isDeleted;
     }
@@ -71,7 +74,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    private function oeGdprBaseDeleteReviews(DatabaseInterface $database)
+    protected function oeGdprBaseDeleteReviews(DatabaseInterface $database)
     {
         $reviews = $database->getAll('select * from oxreviews where oxuserid = ?', array($this->getId()));
         foreach ($reviews as $reviewId) {
@@ -87,7 +90,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    private function oeGdprBaseDeleteRatings(DatabaseInterface $database)
+    protected function oeGdprBaseDeleteRatings(DatabaseInterface $database)
     {
         $ratings = $database->getAll('select * from oxratings where oxuserid = ?', array($this->getId()));
         foreach ($ratings as $ratingId) {
@@ -96,5 +99,44 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
             $rating->delete();
         }
         $database->setFetchMode(DatabaseInterface::FETCH_MODE_NUM);
+    }
+
+    /**
+     * Deletes price alarms.
+     *
+     * @param DatabaseInterface $database
+     */
+    protected function oeGdprBasedeletePriceAlarms(DatabaseInterface $database)
+    {
+        $database->execute(
+            'delete from oxpricealarm where oxuserid = ?',
+            array($this->getId())
+        );
+    }
+
+    /**
+     * Deletes user payments.
+     *
+     * @param DatabaseInterface $database
+     */
+    protected function oeGdprBasedeleteUserPayments(DatabaseInterface $database)
+    {
+        $database->execute(
+            'delete from oxuserpayments where oxuserid = ?',
+            array($this->getId())
+        );
+    }
+
+    /**
+     * Deletes user accepted terms.
+     *
+     * @param DatabaseInterface $database
+     */
+    protected function oeGdprBasedeleteAcceptedTerms(DatabaseInterface $database)
+    {
+        $database->execute(
+            'delete from oxacceptedterms where oxuserid = ?',
+            array($this->getId())
+        );
     }
 }
