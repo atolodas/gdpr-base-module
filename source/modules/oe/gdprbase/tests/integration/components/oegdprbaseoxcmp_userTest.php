@@ -48,7 +48,7 @@ class oeGdprBaseOxcmp_userTest extends OxidTestCase
         $userComponent = oxNew('oxcmp_user');
         $userComponent->setUser($this->getUserForShippingAddressDeletion());
 
-        $userComponent->oeGdprDeleteShippingAddress();
+        $userComponent->oeGdprBaseDeleteShippingAddress();
         $this->assertSame($isPossibleToLoadAddressAfterDeletion, oxNew('oxAddress')->load($addressId));
     }
 

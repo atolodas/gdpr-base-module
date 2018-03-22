@@ -30,7 +30,7 @@ class oeGdprBaseOxcmp_user extends oeGdprBaseOxcmp_user_parent
     /**
      * Deletes user shipping address.
      */
-    public function oeGdprDeleteShippingAddress()
+    public function oeGdprBaseDeleteShippingAddress()
     {
         $addressId = oxRegistry::getConfig()->getRequestParameter('oxaddressid');
 

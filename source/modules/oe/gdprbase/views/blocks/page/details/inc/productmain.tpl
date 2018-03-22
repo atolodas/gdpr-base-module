@@ -1,6 +1,6 @@
 [{$smarty.block.parent}]
 
-[{if !$oViewConf->oeGdprIsRecommendationsEnabled()}]
+[{if !$oViewConf->oeGdprBaseIsRecommendationsEnabled()}]
     <style>
         #suggest {
             display: none;

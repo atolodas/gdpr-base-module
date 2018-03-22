@@ -27,7 +27,7 @@ class oeGdprViewConfig extends oeGdprViewConfig_parent
     /**
      * @return bool
      */
-    public function oeGdprIsRecommendationsEnabled()
+    public function oeGdprBaseIsRecommendationsEnabled()
     {
         return $this->getConfig()->getConfigParam('blOeGdprBaseAllowRecommendArticle');
     }

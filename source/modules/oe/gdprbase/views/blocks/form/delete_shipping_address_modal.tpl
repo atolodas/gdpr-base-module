@@ -31,7 +31,7 @@
                                         <div class="hidden">
                                             [{$oViewConf->getHiddenSid()}]
                                             <input type="hidden" name="cl" value="[{$oViewConf->getActiveClassName()}]">
-                                            <input type="hidden" name="fnc" value="oeGdprDeleteShippingAddress">
+                                            <input type="hidden" name="fnc" value="oeGdprBaseDeleteShippingAddress">
                                             <input type="hidden" name="oxaddressid"
                                                    value="[{$shippingAddress->oxaddress__oxid->value}]">
                                         </div>
