@@ -33,7 +33,7 @@ class oeGdprBaseAccountReviewController extends oxUBase
      *
      * @var string
      */
-    protected $_sThisTemplate = 'oegdprbaseaccountreviewcontroller.tpl';
+    protected $_sThisTemplate = 'reviews.tpl';
 
     /**
      * Page navigation
