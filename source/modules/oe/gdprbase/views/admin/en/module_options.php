@@ -27,7 +27,8 @@ $aLang = array(
 
     'SHOP_MODULE_GROUP_oegdprbase_account_settings' => 'Account settings',
 
-    'SHOP_MODULE_blOeGdprBaseAllowUsersToDeleteTheirAccount'      => 'Allow shop users to delete their account',
+    'SHOP_MODULE_blOeGdprBaseAllowUsersToDeleteTheirAccount' => 'Allow shop users to delete their account',
+    'SHOP_MODULE_blOeGdprBaseAllowUsersToManageReviews'      => 'Allow shop users to manage their reviews',
 
     'SHOP_MODULE_GROUP_oegdprbase_recommendation_settings' => 'Recommendation settings',
     'SHOP_MODULE_blOeGdprBaseAllowRecommendArticle' => 'Allow products to be recommended via e-mail',

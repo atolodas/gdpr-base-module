@@ -1,7 +1,7 @@
 [{$smarty.block.parent}]
 
 [{if $oViewConf->getActiveTheme() == 'azure'}]
-    <button id="oegdprbase-delete-shipping-address-button" class="submitButton largeButton oegdprbase-delete-shipping-address-button removeButton" title="[{oxmultilang ident="OESDGVOBASE_DELETE"}]"><span>[{oxmultilang ident="OESDGVOBASE_DELETE"}]</span></button>
+    <button id="oegdprbase-delete-shipping-address-button" class="submitButton largeButton oegdprbase-delete-shipping-address-button removeButton" title="[{oxmultilang ident="OEGDPRBASE_DELETE"}]"><span>[{oxmultilang ident="OEGDPRBASE_DELETE"}]</span></button>
     [{oxscript include="js/widgets/oxmodalpopup.js" priority=10}]
     [{oxscript add='
         var selectAddressDropDown = $("#addressId");
@@ -28,7 +28,7 @@
 [{else}]
     [{foreach from=$aUserAddresses item=address name="shippingAdresses"}]
         <button id="oegdprbase-delete-shipping-address-button-[{$address->oxaddress__oxid->value}]" class="btn btn-danger btn-xs hasTooltip pull-right dd-action oegdprbase-delete-shipping-address-button"
-                title="[{oxmultilang ident="OESDGVOBASE_DELETE"}]"
+                title="[{oxmultilang ident="OEGDPRBASE_DELETE"}]"
                 data-toggle="modal"
                 data-target="#delete_shipping_address_[{$address->oxaddress__oxid->value}]">
             <i class="fa fa-trash"></i>

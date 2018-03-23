@@ -42,7 +42,7 @@ class oeGdprBaseAccount extends oeGdprBaseAccount_parent
             $session->destroy();
             $this->oeGdprBaseIsUserDeleted = true;
         } else {
-            oxRegistry::get("oxUtilsView")->addErrorToDisplay('OESDGVOBASE_ERROR_ACCOUNT_NOT_DELETED');
+            oxRegistry::get("oxUtilsView")->addErrorToDisplay('OEGDPRBASE_ERROR_ACCOUNT_NOT_DELETED');
         }
     }
 
@@ -80,5 +80,44 @@ class oeGdprBaseAccount extends oeGdprBaseAccount_parent
     protected function oeGdprBaseCanBeUserAccountDeleted()
     {
         return $this->getSession()->checkSessionChallenge() && $this->oeGdprBaseIsUserAllowedToDeleteOwnAccount();
+    }
+
+    /**
+     * Return true, if the review manager should be shown.
+     *
+     * @return bool
+     */
+    public function oeGdprBaseIsUserAllowedToManageOwnReviews()
+    {
+        return (bool) $this
+            ->getConfig()
+            ->getConfigParam('blAllowUsersToManageTheirReviews');
+    }
+
+    /**
+     * Get the total number of reviews for the active user.
+     *
+     * @return integer Number of reviews
+     */
+    public function oeGdprBaseGetReviewAndRatingItemsCount()
+    {
+        $user = $this->getUser();
+        $count = 0;
+        if ($user) {
+            $count = $this
+                ->oeGdprBaseGetContainer()
+                ->getUserReviewAndRatingBridge()
+                ->getReviewAndRatingListCount($user->getId());
+        }
+
+        return $count;
+    }
+
+    /**
+     * @return oeGdprBaseContainer
+     */
+    private function oeGdprBaseGetContainer()
+    {
+        return oeGdprBaseContainer::getInstance();
     }
 }

@@ -4,7 +4,7 @@
             data-toggle="modal"
             data-target="#oegdprbase_delete_my_account_confirmation">
         <i class="fa fa-trash"></i>
-        [{oxmultilang ident="OESDGVOBASE_DELETE_MY_ACCOUNT"}]
+        [{oxmultilang ident="OEGDPRBASE_DELETE_MY_ACCOUNT"}]
     </button>
     [{oxscript add='
         $(window).load(function(){

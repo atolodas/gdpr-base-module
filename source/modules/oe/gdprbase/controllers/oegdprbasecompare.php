@@ -20,41 +20,50 @@
  */
 
 /**
- * Class oeGdprBaseOxcmp_user.
- * Extends oxcmp_user.
+ * Class oeGdprBaseCompare
  *
- * @see oxcmp_user
+ * Extends Compare.
+ *
+ * @see Compare
  */
-class oeGdprBaseOxcmp_user extends oeGdprBaseOxcmp_user_parent
+class oeGdprBaseCompare extends oeGdprBaseCompare_parent
 {
     /**
-     * Deletes user shipping address.
+     * Return true, if the review manager should be shown.
+     *
+     * @return bool
      */
-    public function oeGdprBaseDeleteShippingAddress()
+    public function oeGdprBaseIsUserAllowedToManageOwnReviews()
     {
-        $addressId = oxRegistry::getConfig()->getRequestParameter('oxaddressid');
-
-        $address = oxNew('oxAddress');
-        $address->load($addressId);
-        if ($this->canUserDeleteShippingAddress($address) && $this->getSession()->checkSessionChallenge()) {
-            $address->delete($addressId);
-        }
+        return (bool) $this
+            ->getConfig()
+            ->getConfigParam('blAllowUsersToManageTheirReviews');
     }
 
     /**
-     * Checks if shipping address is assigned to user.
+     * Get the total number of reviews for the active user.
      *
-     * @param oxAddress $address
-     * @return bool
+     * @return integer Number of reviews
      */
-    private function canUserDeleteShippingAddress($address)
+    public function oeGdprBaseGetReviewAndRatingItemsCount()
     {
-        $canDelete = false;
         $user = $this->getUser();
-        if ($address->oxaddress__oxuserid->value === $user->getId()) {
-            $canDelete = true;
+        $count = 0;
+        if ($user) {
+            $count = $this
+                ->oeGdprBaseGetContainer()
+                ->getUserReviewAndRatingBridge()
+                ->getReviewAndRatingListCount($user->getId());
         }
 
-        return $canDelete;
+        return $count;
+    }
+
+    /**
+     * @return oeGdprBaseContainer
+     */
+    private function oeGdprBaseGetContainer()
+    {
+        return oeGdprBaseContainer::getInstance();
     }
 }

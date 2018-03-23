@@ -17,7 +17,7 @@
                     <div class="modal-header">
                         [{block name="oegdprbase_delete_shipping_address_modal_header"}]
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h3 class="h4 modal-title" id="delete_shipping_address_modal_label_[{$shippingAddressId}]">[{oxmultilang ident="OESDGVOBASE_DELETE_SHIPPING_ADDRESS"}]</h3>
+                            <h3 class="h4 modal-title" id="delete_shipping_address_modal_label_[{$shippingAddressId}]">[{oxmultilang ident="OEGDPRBASE_DELETE_SHIPPING_ADDRESS"}]</h3>
                             <img src="[{$oViewConf->getImageUrl('x.png')}]" alt="" class="oegdprbase-close closePop">
                         [{/block}]
                     </div>
@@ -48,7 +48,7 @@
                             <button type="button"
                                     class="btn btn-danger submitButton removeButton"
                                     onclick="window.delete_shipping_address_modal_form_[{$shippingAddressId}].submit();return false;">
-                                <span>[{oxmultilang ident="OESDGVOBASE_DELETE"}]</span>
+                                <span>[{oxmultilang ident="OEGDPRBASE_DELETE"}]</span>
                             </button>
                         [{/block}]
                     </div>

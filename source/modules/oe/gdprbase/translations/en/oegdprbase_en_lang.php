@@ -24,13 +24,15 @@ $sLangName = 'English';
 $aLang = array(
     'charset' => 'UTF-8',
 
-    'OESDGVOBASE_DELETE'                                  => 'Delete',
-    'OESDGVOBASE_DELETE_SHIPPING_ADDRESS'                 => 'Delete shipping address',
-    'OESDGVOBASE_DELETE_MY_ACCOUNT'                       => 'Delete account',
+    'OEGDPRBASE_DELETE'                                  => 'Delete',
+    'OEGDPRBASE_DELETE_SHIPPING_ADDRESS'                 => 'Delete shipping address',
+    'OEGDPRBASE_DELETE_MY_ACCOUNT'                       => 'Delete account',
     'OEGDPRBASE_DELETE_MY_ACCOUNT_WARNING'               => 'This action cannot be undone.<br /> This will permanently delete your personal data.',
     'OEGDPRBASE_DELETE_MY_ACCOUNT_CONFIRMATION_QUESTION' => 'Are you sure you want to delete your account?',
-    'OESDGVOBASE_DELETE_ACCOUNT_CONFIRMATION'             => 'Yes, delete my account',
-    'OESDGVOBASE_CANCEL_DELETE_ACCOUNT'                   => 'Cancel',
-    'OESDGVOBASE_ERROR_ACCOUNT_NOT_DELETED'               => 'The account could not have been deleted',
-    'OESDGVOBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Your account has been deleted',
+    'OEGDPRBASE_DELETE_ACCOUNT_CONFIRMATION'             => 'Yes, delete my account',
+    'OEGDPRBASE_CANCEL_DELETE_ACCOUNT'                   => 'Cancel',
+    'OEGDPRBASE_ERROR_ACCOUNT_NOT_DELETED'               => 'The account could not have been deleted',
+    'OEGDPRBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Your account has been deleted',
+    'OEGDPRBASE_ERROR_REVIEW_AND_RATING_NOT_DELETED'     => 'The review and the star rating could not be deleted',
+    'OEGDPRBASE_MY_REVIEWS'                              => 'My reviews',
 );

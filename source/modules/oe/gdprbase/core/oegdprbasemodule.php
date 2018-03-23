@@ -165,6 +165,8 @@ class oeGdprBaseModule extends oxModule
      *
      * @param string $sSqlFile      SQL file located in module docs folder (usually install.sql or uninstall.sql).
      * @param string $sFailureError An error message to show on failure.
+     *
+     * @return bool
      */
     protected static function _dbEvent($sSqlFile, $sFailureError = 'Operation failed: ')
     {

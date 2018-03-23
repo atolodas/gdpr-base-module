@@ -26,11 +26,14 @@ Module adds base functionality which is required for GDPR (DSGVO German translat
 Activate the module in administration area.
 
 ==Extend==
- * suggest
  * account
+ * compare
  * oxcmp_user
+ * oxrating
+ * oxreview
  * oxuser
- * oxViewConfig
+ * oxviewconfig
+ * suggest
 
 ==Uninstall==
 Disable the module in administration area and delete module folder.

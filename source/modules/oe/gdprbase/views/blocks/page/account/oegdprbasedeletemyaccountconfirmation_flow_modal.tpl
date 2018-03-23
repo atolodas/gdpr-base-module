@@ -33,10 +33,10 @@
                                 </div>
                                 [{block name="oegdprbase_account_delete_my_account_confirmation_form_button_set"}]
                                 <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    [{oxmultilang ident="OESDGVOBASE_CANCEL_DELETE_ACCOUNT"}]
+                                    [{oxmultilang ident="OEGDPRBASE_CANCEL_DELETE_ACCOUNT"}]
                                 </button>
                                 <button type="submit" class="btn btn-danger">
-                                    [{oxmultilang ident="OESDGVOBASE_DELETE_ACCOUNT_CONFIRMATION"}]
+                                    [{oxmultilang ident="OEGDPRBASE_DELETE_ACCOUNT_CONFIRMATION"}]
                                 </button>
                                 [{/block}]
                             </form>

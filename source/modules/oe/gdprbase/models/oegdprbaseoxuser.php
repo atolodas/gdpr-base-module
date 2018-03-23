@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with OXID eSales GDPR base module.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link          http://www.oxid-esales.com
+ * @link      http://www.oxid-esales.com
  * @copyright (C) OXID eSales AG 2003-2018
  */
 
@@ -45,7 +45,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
         $isDeleted = parent::delete($id);
         if ($isDeleted) {
             $database = oxDb::getDb();
-            $this->oeGdprBaseDeleteRecommendationLists($database);
+            $this->oeGdprBaseDeleteRecommendationLists();
             $this->oeGdprBaseDeleteReviews($database);
             $this->oeGdprBaseDeleteRatings($database);
             $this->oeGdprBasedeletePriceAlarms($database);
@@ -57,10 +57,8 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
 
     /**
      * Deletes recommendation lists.
-     *
-     * @param DatabaseInterface $database
      */
-    protected function oeGdprBaseDeleteRecommendationLists(DatabaseInterface $database)
+    protected function oeGdprBaseDeleteRecommendationLists()
     {
         $recommendationList = $this->getUserRecommLists($this->getId());
         /** @var oxRecommList $recommendation */

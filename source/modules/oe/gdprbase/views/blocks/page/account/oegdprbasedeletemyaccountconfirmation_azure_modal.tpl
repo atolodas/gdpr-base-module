@@ -35,12 +35,12 @@
                 <button type="reset"
                         class="textButton closePop"
                 >
-                    [{oxmultilang ident="OESDGVOBASE_CANCEL_DELETE_ACCOUNT"}]
+                    [{oxmultilang ident="OEGDPRBASE_CANCEL_DELETE_ACCOUNT"}]
                 </button>
                 <button class="submitButton largeButton removeButton"
                    onclick="$('#delete_my_account').submit();"
                 >
-                    <span>[{oxmultilang ident="OESDGVOBASE_DELETE_ACCOUNT_CONFIRMATION"}]</span>
+                    <span>[{oxmultilang ident="OEGDPRBASE_DELETE_ACCOUNT_CONFIRMATION"}]</span>
                 </button>
                 [{/block}]
             </div>

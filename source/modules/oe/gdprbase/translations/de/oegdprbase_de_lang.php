@@ -24,13 +24,16 @@ $sLangName = 'Deutsch';
 $aLang = array(
     'charset' => 'UTF-8', // Supports german language specific chars like: ä, ö. ß, etc.
 
-    'OESDGVOBASE_DELETE'                                  => 'Löschen',
-    'OESDGVOBASE_DELETE_SHIPPING_ADDRESS'                 => 'Lieferadresse löschen',
-    'OESDGVOBASE_DELETE_MY_ACCOUNT'                       => 'Konto löschen',
+    'OEGDPRBASE_DELETE'                                  => 'Löschen',
+    'OEGDPRBASE_DELETE_SHIPPING_ADDRESS'                 => 'Lieferadresse löschen',
+    'OEGDPRBASE_DELETE_MY_ACCOUNT'                       => 'Konto löschen',
     'OEGDPRBASE_DELETE_MY_ACCOUNT_WARNING'               => 'Dieser Vorgang kann nicht rückgängig gemacht werden.<br />Alle persönlichen Daten werden dauerhaft gelöscht.',
     'OEGDPRBASE_DELETE_MY_ACCOUNT_CONFIRMATION_QUESTION' => 'Sind Sie sicher, dass Sie Ihr Konto löschen wollen?',
-    'OESDGVOBASE_DELETE_ACCOUNT_CONFIRMATION'             => 'Ja, Konto löschen',
-    'OESDGVOBASE_CANCEL_DELETE_ACCOUNT'                   => 'Abbrechen',
-    'OESDGVOBASE_ERROR_ACCOUNT_NOT_DELETED'               => 'Das Konto konnte nicht gelöscht werden',
-    'OESDGVOBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Ihr Konto wurde gelöscht',
+    'OEGDPRBASE_DELETE_ACCOUNT_CONFIRMATION'             => 'Ja, Konto löschen',
+    'OEGDPRBASE_CANCEL_DELETE_ACCOUNT'                   => 'Abbrechen',
+    'OEGDPRBASE_ERROR_ACCOUNT_NOT_DELETED'               => 'Das Konto konnte nicht gelöscht werden',
+    'OEGDPRBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Ihr Konto wurde gelöscht',
+    'OEGDPRBASE_ERROR_REVIEW_AND_RATING_NOT_DELETED'     => 'Bewertung und Sterne-Rating konnten nicht gelöscht werden',
+    'OEGDPRBASE_MY_REVIEWS'                              => 'Meine Bewertungen',
+
 );

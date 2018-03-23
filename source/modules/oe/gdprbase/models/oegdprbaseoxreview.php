@@ -20,41 +20,34 @@
  */
 
 /**
- * Class oeGdprBaseOxcmp_user.
- * Extends oxcmp_user.
+ * Class oeGdprBaseOxreview
  *
- * @see oxcmp_user
+ * Extends oxReview
+ *
+ * @See oxReview
  */
-class oeGdprBaseOxcmp_user extends oeGdprBaseOxcmp_user_parent
+class oeGdprBaseOxreview extends oeGdprBaseOxreview_parent
 {
     /**
-     * Deletes user shipping address.
+     * Returns ReviewAndRating list by User id.
+     *
+     * @param string $userId
+     *
+     * @return array
      */
-    public function oeGdprBaseDeleteShippingAddress()
+    public function oxGdprBaseGetReviewAndRatingListByUserId($userId)
     {
-        $addressId = oxRegistry::getConfig()->getRequestParameter('oxaddressid');
-
-        $address = oxNew('oxAddress');
-        $address->load($addressId);
-        if ($this->canUserDeleteShippingAddress($address) && $this->getSession()->checkSessionChallenge()) {
-            $address->delete($addressId);
-        }
+        return $this
+            ->oxGdprBaseGetContainer()
+            ->getUserReviewAndRatingBridge()
+            ->getReviewAndRatingList($userId);
     }
 
     /**
-     * Checks if shipping address is assigned to user.
-     *
-     * @param oxAddress $address
-     * @return bool
+     * @return oeGdprBaseContainer
      */
-    private function canUserDeleteShippingAddress($address)
+    private function oxGdprBaseGetContainer()
     {
-        $canDelete = false;
-        $user = $this->getUser();
-        if ($address->oxaddress__oxuserid->value === $user->getId()) {
-            $canDelete = true;
-        }
-
-        return $canDelete;
+        return oeGdprBaseContainer::getInstance();
     }
 }

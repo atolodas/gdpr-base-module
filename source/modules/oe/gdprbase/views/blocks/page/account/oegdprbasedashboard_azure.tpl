@@ -2,7 +2,7 @@
 
     [{include file="oegdprbasedeletemyaccountconfirmation_azure_modal.tpl"}]
     <a id="oegdprbase_delete_my_account_button" class="submitButton largeButton removeButton nextStep">
-        <span>[{oxmultilang ident="OESDGVOBASE_DELETE_MY_ACCOUNT"}]</span>
+        <span>[{oxmultilang ident="OEGDPRBASE_DELETE_MY_ACCOUNT"}]</span>
     </a>
     [{oxscript add='
         $(window).load(function(){

@@ -28,7 +28,7 @@ $sMetadataVersion = '1.1';
  * Module information
  */
 $aModule = array(
-    'id'          => 'oegdprbase',
+    'id'          => 'gdprbase',
     'title'       => array(
         'de' => 'GDPR Base',
         'en' => 'GDPR Base',
@@ -42,12 +42,15 @@ $aModule = array(
     'author'      => 'OXID eSales AG',
     'url'         => 'https://www.oxid-esales.com/',
     'email'       => 'info@oxid-esales.com',
-    'extend'      => array(
-        'suggest'    => 'oe/gdprbase/controllers/oegdprbaserecommend',
-        'account'    => 'oe/gdprbase/controllers/oegdprbaseaccount',
-        'oxcmp_user' => 'oe/gdprbase/components/oegdprbaseoxcmp_user',
-        'oxuser'     => 'oe/gdprbase/models/oegdprbaseoxuser',
-        'oxViewConfig' => 'oe/gdprbase/core/oegdprviewconfig',
+    'extend' => array(
+        'suggest'      => 'oe/gdprbase/controllers/oegdprbaserecommend',
+        'account'      => 'oe/gdprbase/controllers/oegdprbaseaccount',
+        'compare'      => 'oe/gdprbase/controllers/oegdprbasecompare',
+        'oxcmp_user'   => 'oe/gdprbase/components/oegdprbaseoxcmp_user',
+        'oxrating'     => 'oe/gdprbase/models/oegdprbaseoxrating',
+        'oxreview'     => 'oe/gdprbase/models/oegdprbaseoxreview',
+        'oxuser'       => 'oe/gdprbase/models/oegdprbaseoxuser',
+        'oxviewconfig' => 'oe/gdprbase/core/oegdprviewconfig',
     ),
     'files'       => array(
         'oegdprbasemodule'                  => 'oe/gdprbase/core/oegdprbasemodule.php',
@@ -99,6 +102,12 @@ $aModule = array(
         array(
             'group' => 'oegdprbase_account_settings',
             'name'  => 'blOeGdprBaseAllowUsersToDeleteTheirAccount',
+            'type'  => 'bool',
+            'value' => 'false'
+        ),
+        array(
+            'group' => 'oegdprbase_account_settings',
+            'name'  => 'blOeGdprBaseAllowUsersToManageReviews',
             'type'  => 'bool',
             'value' => 'false'
         ),

@@ -20,11 +20,14 @@
  */
 
 /**
- * Class oeGdprBaseAccountReviewController.
+ * Class oeGdprBaseAccountReviewController
+ *
+ * Extends oxUBase.
+ *
+ * @see oxUBase
  */
 class oeGdprBaseAccountReviewController extends oxUBase
 {
-
     /**
      * Controller template name.
      *
@@ -32,32 +35,301 @@ class oeGdprBaseAccountReviewController extends oxUBase
      */
     protected $_sThisTemplate = 'oegdprbaseaccountreviewcontroller.tpl';
 
-
-    
     /**
-     * Overridden parent method.
+     * Page navigation
      *
-     * @return mixed
+     * @var object
      */
-    public function render()
+    protected $_oPageNavigation = null;
+
+    /**
+     * @var int Items to be displayed per page
+     */
+    protected $oeGdprBaseItemsPerPage = 10;
+
+    /**
+     * Number of possible pages.
+     *
+     * @var integer
+     */
+    protected $_iCntPages;
+
+    /**
+     * Redirect to My Account, if validation does not pass.
+     */
+    public function init()
     {
-        $mReturn = $this->_oeGdprBaseAccountReviewController_render_parent();
+        if (!$this->oeGdprBaseIsUserAllowedToManageOwnReviews() || !$this->getUser()) {
+            $this->oeGdprBaseRedirectToAccountDashboard();
+        }
 
-
-        return $mReturn;
+        parent::init();
     }
 
-    
+    /**
+     * Returns Bread Crumb - you are here page1/page2/page3...
+     *
+     * @throws oxSystemComponentException if a class name cannot be resolved
+     *
+     * @return array
+     */
+    public function getBreadCrumb()
+    {
+        return array (
+            array (
+                'title' => $this->oeGdprBaseGetTranslatedString('MY_ACCOUNT'),
+                'link'  => $this->oeGdprBaseGetMyAccountPageUrl(),
+            ),
+            array (
+                'title' => $this->oeGdprBaseGetTranslatedString('MY_REVIEWS'),
+                'link'  => $this->getLink(),
+            ),
+        );
+    }
 
     /**
-     * Parent `render` call. Method required for mocking.
+     * Generates the pagination.
      *
-     * @codeCoverageIgnore
-     *
-     * @return mixed
+     * @return \stdClass
      */
-    protected function _oeGdprBaseAccountReviewController_render_parent()
+    public function getPageNavigation()
     {
-        return parent::render();
+        $this->_iCntPages = $this->oeGdprBaseGetPagesCount();
+        $this->_oPageNavigation = $this->generatePageNavigation();
+
+        return $this->_oPageNavigation;
+    }
+
+    /**
+     * Return how many items will be displayed per page.
+     *
+     * @return int
+     */
+    public function oeGdprBaseGetItemsPerPage()
+    {
+        return $this->oeGdprBaseItemsPerPage;
+    }
+
+    /**
+     * Get actual page number.
+     *
+     * @return int
+     */
+    public function getActPage()
+    {
+        $lastPage = $this->oeGdprBaseGetPagesCount();
+        $currentPage = parent::getActPage();
+
+        if ($currentPage >= $lastPage) {
+            $currentPage = $lastPage - 1;
+        }
+
+        return $currentPage;
+    }
+
+    /**
+     * Delete review and rating, which belongs to the active user.
+     */
+    public function oeGdprBaseDeleteReviewAndRating()
+    {
+        if ($this->getSession()->checkSessionChallenge()) {
+            try {
+                $this->oeGdprBaseDeleteReview();
+                $this->oeGdprBaseDeleteRating();
+            } catch (oeGdprBaseEntryDoesNotExistDaoException $exception) {
+                //if user reloads the page after deletion
+            }
+        }
+    }
+
+    /**
+     * Returns Review List
+     *
+     * @throws oxSystemComponentException if a class name cannot be resolved
+     *
+     * @return array
+     */
+    public function oeGdprBaseGetReviewList()
+    {
+        $currentPage = $this->getActPage();
+        $itemsPerPage = $this->oeGdprBaseGetItemsPerPage();
+        $offset = $currentPage * $itemsPerPage;
+
+        $userId = $this->getUser()->getId();
+
+        $reviewModel = oxNew('oxReview');
+        $reviewAndRatingList = $reviewModel->oxGdprBaseGetReviewAndRatingListByUserId($userId);
+
+        return $this->oeGdprBaseGetPaginatedReviewAndRatingList(
+            $reviewAndRatingList,
+            $itemsPerPage,
+            $offset
+        );
+    }
+
+    /**
+     * Get the total number of reviews for the active user.
+     *
+     * @return integer Number of reviews
+     */
+    public function oeGdprBaseGetReviewAndRatingItemsCount()
+    {
+        $user = $this->getUser();
+        $count = 0;
+        if ($user) {
+            $count = $this
+                ->oeGdprBaseGetContainer()
+                ->getUserReviewAndRatingBridge()
+                ->getReviewAndRatingListCount($user->getId());
+        }
+
+        return $count;
+    }
+
+    /**
+     * Return true, if the review manager should be shown.
+     *
+     * @return bool
+     */
+    public function oeGdprBaseIsUserAllowedToManageOwnReviews()
+    {
+        return (bool) $this
+            ->getConfig()
+            ->getConfigParam('blAllowUsersToManageTheirReviews');
+    }
+
+    /**
+     * Deletes Review.
+     */
+    private function oeGdprBaseDeleteReview()
+    {
+        $userId = $this->getUser()->getId();
+        $reviewId = $this->oeGdprBaseGetReviewIdFromRequest();
+
+        if ($reviewId) {
+            $userReviewBridge = $this->oeGdprBaseGetContainer()->getUserReviewBridge();
+            $userReviewBridge->deleteReview($userId, $reviewId);
+        }
+    }
+
+    /**
+     * Deletes Rating.
+     */
+    private function oeGdprBaseDeleteRating()
+    {
+        $userId = $this->getUser()->getId();
+        $ratingId = $this->oeGdprBaseGetRatingIdFromRequest();
+
+        if ($ratingId) {
+            $userRatingBridge = $this->oeGdprBaseGetContainer()->getUserRatingBridge();
+            $userRatingBridge->deleteRating($userId, $ratingId);
+        }
+    }
+
+    /**
+     * Retrieve the Review id from the request
+     *
+     * @return string
+     */
+    private function oeGdprBaseGetReviewIdFromRequest()
+    {
+        return oxRegistry::getConfig()->getRequestParameter('reviewId');
+    }
+
+    /**
+     * Retrieve the Rating id from the request
+     *
+     * @return string
+     */
+    private function oeGdprBaseGetRatingIdFromRequest()
+    {
+        return oxRegistry::getConfig()->getRequestParameter('ratingId');
+    }
+
+    /**
+     * Redirect to My Account dashboard
+     */
+    private function oeGdprBaseRedirectToAccountDashboard()
+    {
+        oxRegistry::getUtils()->redirect(
+            $this->oeGdprBaseGetMyAccountPageUrl(),
+            true,
+            302
+        );
+    }
+
+    /**
+     * Returns pages count.
+     *
+     * @return int
+     */
+    private function oeGdprBaseGetPagesCount()
+    {
+        return ceil($this->oeGdprBaseGetReviewAndRatingItemsCount() / $this->oeGdprBaseGetItemsPerPage());
+    }
+
+    /**
+     * Returns My Account page url.
+     *
+     * @throws oxSystemComponentException if a class name cannot be resolved
+     *
+     * @return string
+     */
+    private function oeGdprBaseGetMyAccountPageUrl()
+    {
+        $selfLink = $this->getViewConfig()->getSelfLink();
+
+        $seoEncoder = oxNew('oxseoencoder');
+
+        return $seoEncoder->getStaticUrl($selfLink . 'cl=account');
+    }
+
+    /**
+     * Returns translated string.
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    private function oeGdprBaseGetTranslatedString($string)
+    {
+        $languageId = oxRegistry::getLang()->getBaseLanguage();
+
+        return oxRegistry::getLang()->translateString(
+            $string,
+            $languageId,
+            false
+        );
+    }
+
+    /**
+     * Paginate ReviewAndRating list.
+     *
+     * @param array $reviewAndRatingList
+     * @param int   $itemsCount
+     * @param int   $offset
+     *
+     * @return array
+     */
+    private function oeGdprBaseGetPaginatedReviewAndRatingList(
+        $reviewAndRatingList,
+        $itemsCount,
+        $offset
+    )
+    {
+        return array_slice(
+            $reviewAndRatingList,
+            $offset,
+            $itemsCount,
+            true
+        );
+    }
+
+    /**
+     * @return oeGdprBaseContainer
+     */
+    private function oeGdprBaseGetContainer()
+    {
+        return oeGdprBaseContainer::getInstance();
     }
 }
