@@ -104,7 +104,7 @@ class oeGdprBaseUserReviewAndRatingBridge
      */
     private function formatReviewAndRatingDate(oeGdprBaseReviewAndRating $reviewAndRating)
     {
-        $formattedDate = Registry::getUtilsDate()->formatDBDate($reviewAndRating->getCreatedAt());
+        $formattedDate = oxRegistry::get("oxUtilsDate")->formatDBDate($reviewAndRating->getCreatedAt());
 
         $reviewAndRating->setCreatedAt($formattedDate);
     }
@@ -158,7 +158,7 @@ class oeGdprBaseUserReviewAndRatingBridge
         }
 
         if ($type === 'oxrecommlist') {
-            $model = oxNew('oxRecommendationList');
+            $model = oxNew('oxRecommList');
         }
 
         if (!isset($model)) {

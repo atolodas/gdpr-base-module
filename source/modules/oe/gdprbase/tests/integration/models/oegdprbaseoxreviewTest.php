@@ -56,7 +56,7 @@ class oeGdprBaseOxreviewTest extends OxidTestCase
         );
 
         $this->assertInstanceOf(
-            'oeGdprReviewAndRating',
+            'oeGdprBaseReviewAndRating',
             $reviewAndRatingList[0]
         );
     }
