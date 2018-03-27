@@ -102,6 +102,7 @@ $aModule = array(
         array('template' => 'page/account/dashboard.tpl', 'block'=>'account_dashboard_col2', 'file' => '/views/blocks/page/account/dashboard.tpl'),
         array('template' => 'page/account/inc/account_menu.tpl', 'block'=>'account_menu', 'file' => '/views/blocks/page/account/inc/account_menu.tpl'),
         array('template' => 'page/details/inc/productmain.tpl', 'block'=>'details_productmain_productlinks', 'file' => '/views/blocks/page/details/inc/productmain.tpl'),
+        array('template' => 'page/account/inc/account_menu.tpl', 'block'=>'account_menu', 'file' => '/views/blocks/page/account/inc/account_menu.tpl'),
     ),
     'settings' => array(
         array(
