@@ -91,7 +91,7 @@ class oeGdprBaseAccount extends oeGdprBaseAccount_parent
     {
         return (bool) $this
             ->getConfig()
-            ->getConfigParam('blAllowUsersToManageTheirReviews');
+            ->getConfigParam('blOeGdprBaseAllowUsersToManageReviews');
     }
 
     /**

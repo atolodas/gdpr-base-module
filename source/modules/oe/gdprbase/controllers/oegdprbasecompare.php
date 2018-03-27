@@ -37,7 +37,7 @@ class oeGdprBaseCompare extends oeGdprBaseCompare_parent
     {
         return (bool) $this
             ->getConfig()
-            ->getConfigParam('blAllowUsersToManageTheirReviews');
+            ->getConfigParam('blOeGdprBaseAllowUsersToManageReviews');
     }
 
     /**

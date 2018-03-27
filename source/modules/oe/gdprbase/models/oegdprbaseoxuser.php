@@ -45,7 +45,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
         $isDeleted = parent::delete($id);
         if ($isDeleted) {
             $database = oxDb::getDb();
-            $this->oeGdprBaseDeleteRecommendationLists();
+            $this->oeGdprBaseDeleteRecommendationLists($database);
             $this->oeGdprBaseDeleteReviews($database);
             $this->oeGdprBaseDeleteRatings($database);
             $this->oeGdprBasedeletePriceAlarms($database);
@@ -58,13 +58,14 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
     /**
      * Deletes recommendation lists.
      */
-    protected function oeGdprBaseDeleteRecommendationLists()
+    protected function oeGdprBaseDeleteRecommendationLists($database)
     {
         $recommendationList = $this->getUserRecommLists($this->getId());
         /** @var oxRecommList $recommendation */
         foreach ($recommendationList as $recommendation) {
             $recommendation->delete();
         }
+        $database->setFetchMode(DatabaseInterface::FETCH_MODE_NUM);
     }
 
     /**
@@ -74,7 +75,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      */
     protected function oeGdprBaseDeleteReviews(DatabaseInterface $database)
     {
-        $reviews = $database->getAll('select * from oxreviews where oxuserid = ?', array($this->getId()));
+        $reviews = $database->getAll('select OXID from oxreviews where oxuserid = ?', array($this->getId()));
         foreach ($reviews as $reviewId) {
             $review = oxNew('oxReview');
             $review->load($reviewId[0]);
@@ -90,7 +91,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      */
     protected function oeGdprBaseDeleteRatings(DatabaseInterface $database)
     {
-        $ratings = $database->getAll('select * from oxratings where oxuserid = ?', array($this->getId()));
+        $ratings = $database->getAll('select OXID from oxratings where oxuserid = ?', array($this->getId()));
         foreach ($ratings as $ratingId) {
             $rating = oxNew('oxRating');
             $rating->load($ratingId[0]);

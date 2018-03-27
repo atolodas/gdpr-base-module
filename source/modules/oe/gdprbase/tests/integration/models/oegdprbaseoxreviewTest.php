@@ -48,7 +48,7 @@ class oeGdprBaseOxreviewTest extends OxidTestCase
 
         $review = oxNew('oxReview');
 
-        $reviewAndRatingList = $review->oxGdprBaseGetReviewAndRatingListByUserId('testUser');
+        $reviewAndRatingList = $review->oeGdprBaseGetReviewAndRatingListByUserId('testUser');
 
         $this->assertEquals(
             3,
@@ -72,6 +72,6 @@ class oeGdprBaseOxreviewTest extends OxidTestCase
 
         $review = oxNew('oxReview');
 
-        $review->oxGdprBaseGetReviewAndRatingListByUserId('testUser');
+        $review->oeGdprBaseGetReviewAndRatingListByUserId('testUser');
     }    
 }

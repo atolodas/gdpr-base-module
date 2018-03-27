@@ -35,7 +35,7 @@ class oeGdprBaseOxreview extends oeGdprBaseOxreview_parent
      *
      * @return array
      */
-    public function oxGdprBaseGetReviewAndRatingListByUserId($userId)
+    public function oeGdprBaseGetReviewAndRatingListByUserId($userId)
     {
         return $this
             ->oxGdprBaseGetContainer()

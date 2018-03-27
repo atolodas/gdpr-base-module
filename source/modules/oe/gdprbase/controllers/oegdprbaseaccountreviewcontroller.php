@@ -158,7 +158,7 @@ class oeGdprBaseAccountReviewController extends oxUBase
         $userId = $this->getUser()->getId();
 
         $reviewModel = oxNew('oxReview');
-        $reviewAndRatingList = $reviewModel->oxGdprBaseGetReviewAndRatingListByUserId($userId);
+        $reviewAndRatingList = $reviewModel->oeGdprBaseGetReviewAndRatingListByUserId($userId);
 
         return $this->oeGdprBaseGetPaginatedReviewAndRatingList(
             $reviewAndRatingList,
@@ -195,7 +195,7 @@ class oeGdprBaseAccountReviewController extends oxUBase
     {
         return (bool) $this
             ->getConfig()
-            ->getConfigParam('blAllowUsersToManageTheirReviews');
+            ->getConfigParam('blOeGdprBaseAllowUsersToManageReviews');
     }
 
     /**

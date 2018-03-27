@@ -106,7 +106,7 @@ class oeGdprBaseAccountReviewControllerTest extends OxidTestCase
 
     public function testInitDoesNotRedirect()
     {
-        $this->setConfigParam('blAllowUsersToManageTheirReviews', true);
+        $this->setConfigParam('blOeGdprBaseAllowUsersToManageReviews', true);
         $this->createTestDataForReviewAndRatingList();
 
         $utilsStub = $this->getMockBuilder('oxUtils')->getMock();
@@ -120,7 +120,7 @@ class oeGdprBaseAccountReviewControllerTest extends OxidTestCase
 
     public function testInitRedirectsIfFeatureIsDisabled()
     {
-        $this->setConfigParam('blAllowUsersToManageTheirReviews', false);
+        $this->setConfigParam('blOeGdprBaseAllowUsersToManageReviews', false);
         $this->createTestDataForReviewAndRatingList();
 
         $utilsStub = $this->getMockBuilder('oxUtils')->getMock();
@@ -134,7 +134,7 @@ class oeGdprBaseAccountReviewControllerTest extends OxidTestCase
 
     public function testInitRedirectsIfUserIsNotLogged()
     {
-        $this->setConfigParam('blAllowUsersToManageTheirReviews', true);
+        $this->setConfigParam('blOeGdprBaseAllowUsersToManageReviews', true);
         $this->createTestDataForReviewAndRatingList();
 
         $utilsStub = $this->getMockBuilder('oxUtils')->getMock();
