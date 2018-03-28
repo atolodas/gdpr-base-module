@@ -33,7 +33,7 @@ class oeGdprBaseAccountReviewController extends oxUBase
      *
      * @var string
      */
-    protected $_sThisTemplate = 'reviews.tpl';
+    protected $_sThisTemplate = 'oegdprbaseaccountreviewcontroller.tpl';
 
     /**
      * Page navigation
@@ -83,7 +83,7 @@ class oeGdprBaseAccountReviewController extends oxUBase
                 'link'  => $this->oeGdprBaseGetMyAccountPageUrl(),
             ),
             array (
-                'title' => $this->oeGdprBaseGetTranslatedString('MY_REVIEWS'),
+                'title' => $this->oeGdprBaseGetTranslatedString('OEGDPRBASE_MY_REVIEWS'),
                 'link'  => $this->getLink(),
             ),
         );

@@ -2,7 +2,7 @@
     [{if $oViewConf->getActiveTheme() == 'azure'}]
         [{ include file="oegdprbaseaccountreviewcontroller_azure.tpl"}]
     [{elseif $oViewConf->getActiveTheme() == 'flow'}]
-        [{ include file="oegdprbasedashboard_flow.tpl" }]
+        [{ include file="oegdprbaseaccountreviewcontroller_flow.tpl" }]
     [{else}]
         [{block name="oegdprbase_account_manage_reviews"}]
             [{* Overwrite this block, if the above does not fit, because you are using a different theme *}]

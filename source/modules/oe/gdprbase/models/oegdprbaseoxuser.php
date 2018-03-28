@@ -45,7 +45,7 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
         $isDeleted = parent::delete($id);
         if ($isDeleted) {
             $database = oxDb::getDb();
-            $this->oeGdprBaseDeleteRecommendationLists();
+            $this->oeGdprBaseDeleteRecommendationLists($database);
             $this->oeGdprBaseDeleteReviews($database);
             $this->oeGdprBaseDeleteRatings($database);
             $this->oeGdprBasedeletePriceAlarms($database);
