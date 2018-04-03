@@ -50,7 +50,7 @@ class oeGdprBaseUserReviewBridge
     {
         $review = $this->getReviewById($reviewId);
 
-        $this->verifiyUserPermissionsToManageReview($review, $userId);
+        $this->verifyUserPermissionsToManageReview($review, $userId);
 
         $review->delete();
     }
@@ -61,7 +61,7 @@ class oeGdprBaseUserReviewBridge
      *
      * @throws oeGdprBaseReviewPermissionException
      */
-    private function verifiyUserPermissionsToManageReview(oxReview $review, $userId)
+    private function verifyUserPermissionsToManageReview(oxReview $review, $userId)
     {
         if ($review->oxreviews__oxuserid->value !== $userId) {
             throw new oeGdprBaseReviewPermissionException();
