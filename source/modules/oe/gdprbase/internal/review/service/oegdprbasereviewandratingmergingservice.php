@@ -109,7 +109,7 @@ class oeGdprBaseReviewAndRatingMergingService
      * Returns true if Rating doesn't belong to any review.
      *
      * @param oeGdprBaseRating $rating
-     * @param array        $reviews
+     * @param array            $reviews
      *
      * @return bool
      */

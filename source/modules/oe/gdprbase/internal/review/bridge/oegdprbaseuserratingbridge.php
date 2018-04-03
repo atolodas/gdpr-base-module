@@ -45,14 +45,12 @@ class oeGdprBaseUserRatingBridge
      *
      * @param string $userId
      * @param string $ratingId
-     *
-     * @throws oeGdprBaseRatingPermissionException
      */
     public function deleteRating($userId, $ratingId)
     {
         $rating = $this->getRatingById($ratingId);
 
-        $this->validateUserPermissionsToManageRating($rating, $userId);
+        $this->verifiyUserPermissionsToManageRating($rating, $userId);
 
         $rating->delete();
     }
@@ -63,7 +61,7 @@ class oeGdprBaseUserRatingBridge
      *
      * @throws oeGdprBaseRatingPermissionException
      */
-    private function validateUserPermissionsToManageRating(oxRating $rating, $userId)
+    private function verifiyUserPermissionsToManageRating(oxRating $rating, $userId)
     {
         if ($rating->oxratings__oxuserid->value !== $userId) {
             throw new oeGdprBaseRatingPermissionException();

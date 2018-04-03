@@ -26,8 +26,9 @@ class oeGdprBaseReviewDaoTest extends \PHPUnit_Framework_TestCase
         $reviewDao = new oeGdprBaseReviewDao($this->getDatabaseMock());
         $reviews = $reviewDao->getReviewsByUserId(1);
 
-        $this->assertTrue(
-            is_array($reviews)
+        $this->assertInternalType(
+            'array',
+            $reviews
         );
     }
 
@@ -36,7 +37,7 @@ class oeGdprBaseReviewDaoTest extends \PHPUnit_Framework_TestCase
         $reviewDao = new oeGdprBaseReviewDao($this->getDatabaseMock());
         $reviews = $reviewDao->getReviewsByUserId(1);
 
-        $this->assertEquals(2, count($reviews));
+        $this->assertCount(2, $reviews);
     }
 
     public function testGetReviewsByUserIdReturnsMappedReviews()

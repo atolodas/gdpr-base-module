@@ -40,7 +40,7 @@ class oeGdprBaseRating
     private $objectId;
 
     /**
-     * @var int
+     * @var string
      */
     private $userId;
 
@@ -115,7 +115,7 @@ class oeGdprBaseRating
     }
 
     /**
-     * @param int $userId
+     * @param string $userId
      *
      * @return $this
      */

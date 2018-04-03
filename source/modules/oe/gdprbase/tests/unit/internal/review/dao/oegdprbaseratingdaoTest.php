@@ -26,8 +26,9 @@ class oeGdprBaseRatingDaoTest extends \PHPUnit_Framework_TestCase
         $ratingDao = new oeGdprBaseRatingDao($this->getDatabaseMock());
         $ratings = $ratingDao->getRatingsByUserId(1);
 
-        $this->assertTrue(
-            is_array($ratings)
+        $this->assertInternalType(
+            'array',
+            $ratings
         );
     }
 
@@ -36,7 +37,7 @@ class oeGdprBaseRatingDaoTest extends \PHPUnit_Framework_TestCase
         $ratingDao = new oeGdprBaseRatingDao($this->getDatabaseMock());
         $ratings = $ratingDao->getRatingsByUserId(1);
 
-        $this->assertEquals(2, count($ratings));
+        $this->assertCount(2, $ratings);
     }
 
     public function testGetRatingsByUserIdReturnsMappedRatings()
@@ -55,8 +56,9 @@ class oeGdprBaseRatingDaoTest extends \PHPUnit_Framework_TestCase
         $ratingDao = new oeGdprBaseRatingDao($this->getDatabaseMock());
         $ratings = $ratingDao->getRatingsByProductId(1);
 
-        $this->assertTrue(
-            is_array($ratings)
+        $this->assertInternalType(
+            'array',
+            $ratings
         );
     }
 
@@ -65,7 +67,7 @@ class oeGdprBaseRatingDaoTest extends \PHPUnit_Framework_TestCase
         $ratingDao = new oeGdprBaseRatingDao($this->getDatabaseMock());
         $ratings = $ratingDao->getRatingsByProductId(1);
 
-        $this->assertEquals(2, count($ratings));
+        $this->assertCount(2, $ratings);
     }
 
     public function testGetRatingsByProductIdReturnsMappedRatings()

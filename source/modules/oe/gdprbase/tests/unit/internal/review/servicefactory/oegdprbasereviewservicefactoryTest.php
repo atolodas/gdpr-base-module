@@ -21,45 +21,38 @@
 
 class oeGdprBaseReviewServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetUserReviewAndRatingBridge()
+    /**
+     * @dataProvider bridgeDataProvider
+     */
+    public function testBridgeGetters($instanceName, $getterName)
     {
         $reviewServiceFactory = new oeGdprBaseReviewServiceFactory();
-        $userReviewAndRatingBridge = $reviewServiceFactory->getUserReviewAndRatingBridge();
 
         $this->assertInstanceOf(
-            'oeGdprBaseUserReviewAndRatingBridge',
-            $userReviewAndRatingBridge
+            $instanceName,
+            $reviewServiceFactory->$getterName()
         );
     }
 
-    public function testGetProductRatingBridge()
+    public function bridgeDataProvider()
     {
-        $reviewServiceFactory = new oeGdprBaseReviewServiceFactory();
-        $productRatingBridge = $reviewServiceFactory->getProductRatingBridge();
-
-        $this->assertInstanceOf(
-            'oeGdprBaseProductRatingBridge',
-            $productRatingBridge
-        );
-    }
-
-    public function testGetUserRatingBridge()
-    {
-        $reviewServiceFactory = new oeGdprBaseReviewServiceFactory();
-
-        $this->assertInstanceOf(
-            'oeGdprBaseUserRatingBridge',
-            $reviewServiceFactory->getUserRatingBridge()
-        );
-    }
-
-    public function testGetUserReviewBridge()
-    {
-        $reviewServiceFactory = new oeGdprBaseReviewServiceFactory();
-
-        $this->assertInstanceOf(
-            'oeGdprBaseUserReviewBridge',
-            $reviewServiceFactory->getUserReviewBridge()
+        return array(
+            array(
+                'oeGdprBaseUserReviewAndRatingBridge',
+                'getUserReviewAndRatingBridge'
+            ),
+            array(
+                'oeGdprBaseProductRatingBridge',
+                'getProductRatingBridge'
+            ),
+            array(
+                'oeGdprBaseUserRatingBridge',
+                'getUserRatingBridge'
+            ),
+            array(
+                'oeGdprBaseUserReviewBridge',
+                'getUserReviewBridge'
+            ),
         );
     }
 }

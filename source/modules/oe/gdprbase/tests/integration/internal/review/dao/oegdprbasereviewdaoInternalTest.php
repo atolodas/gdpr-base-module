@@ -44,11 +44,9 @@ class oeGdprBaseReviewDaoInternalTest extends OxidTestCase
 
         $reviewsAfterDeletion = $reviewDao->getReviewsByUserId('user1');
 
-        $this->assertFalse(
-            in_array(
-                $reviewToDelete,
-                $reviewsAfterDeletion
-            )
+        $this->assertNotContains(
+            $reviewToDelete,
+            $reviewsAfterDeletion
         );
     }
 

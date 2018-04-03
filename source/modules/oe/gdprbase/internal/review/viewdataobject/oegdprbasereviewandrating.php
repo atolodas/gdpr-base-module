@@ -85,7 +85,7 @@ class oeGdprBaseReviewAndRating
     }
 
     /**
-     * @param int $id
+     * @param string $id
      *
      * @return $this
      */
@@ -105,7 +105,7 @@ class oeGdprBaseReviewAndRating
     }
 
     /**
-     * @param string $rating
+     * @param int $rating
      *
      * @return $this
      */
@@ -157,7 +157,7 @@ class oeGdprBaseReviewAndRating
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getObjectId()
     {

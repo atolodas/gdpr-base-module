@@ -45,25 +45,23 @@ class oeGdprBaseUserReviewBridge
      *
      * @param string $userId
      * @param string $reviewId
-     *
-     * @throws oeGdprBaseReviewPermissionException
      */
     public function deleteReview($userId, $reviewId)
     {
         $review = $this->getReviewById($reviewId);
 
-        $this->validateUserPermissionsToManageReview($review, $userId);
+        $this->verifiyUserPermissionsToManageReview($review, $userId);
 
         $review->delete();
     }
 
     /**
-     * @param Review $review
+     * @param oxReview $review
      * @param string $userId
      *
      * @throws oeGdprBaseReviewPermissionException
      */
-    private function validateUserPermissionsToManageReview(oxReview $review, $userId)
+    private function verifiyUserPermissionsToManageReview(oxReview $review, $userId)
     {
         if ($review->oxreviews__oxuserid->value !== $userId) {
             throw new oeGdprBaseReviewPermissionException();
@@ -73,7 +71,7 @@ class oeGdprBaseUserReviewBridge
     /**
      * @param string $reviewId
      *
-     * @return Review
+     * @return oxReview
      * @throws oeGdprBaseEntryDoesNotExistDaoException
      */
     private function getReviewById($reviewId)
