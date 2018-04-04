@@ -35,6 +35,20 @@ class oeGdprBaseUserRatingBridgeInternalTest extends OxidTestCase
         $this->assertFalse($database->getOne($sql));
     }
 
+    public function testDeleteRatingForSubShop()
+    {
+        $userRatingBridge = $this->getUserRatingBridge();
+        $database = oxDb::getDb();
+
+        $sql = "select oxid from oxratings where oxid = 'testSubShopRatingId'";
+
+        $this->createTestRatingForSubShop();
+        $this->assertEquals('testSubShopRatingId', $database->getOne($sql));
+
+        $userRatingBridge->deleteRating('user1', 'testSubShopRatingId');
+        $this->assertFalse($database->getOne($sql));
+    }
+
     public function testDeleteRatingWithNonExistentRatingId()
     {
         $this->setExpectedException('oeGdprBaseEntryDoesNotExistDaoException');
@@ -81,6 +95,15 @@ class oeGdprBaseUserRatingBridgeInternalTest extends OxidTestCase
         $rating = oxNew('oxRating');
         $rating->setId('id1');
         $rating->oxratings__oxuserid = new oxField('user1');
+        $rating->save();
+    }
+
+    private function createTestRatingForSubShop()
+    {
+        $rating = oxNew('oxRating');
+        $rating->setId('testSubShopRatingId');
+        $rating->oxratings__oxuserid = new oxField('user1');
+        $rating->oxratings__oxshopid = new oxField(5);
         $rating->save();
     }
 }

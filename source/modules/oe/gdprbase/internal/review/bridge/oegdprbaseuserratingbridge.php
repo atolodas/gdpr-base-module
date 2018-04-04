@@ -49,10 +49,22 @@ class oeGdprBaseUserRatingBridge
     public function deleteRating($userId, $ratingId)
     {
         $rating = $this->getRatingById($ratingId);
-
         $this->verifyUserPermissionsToManageRating($rating, $userId);
 
+        $rating = $this->disableSubShopDeleteProtectionForRating($rating);
         $rating->delete();
+    }
+
+    /**
+     * @param oxRating $rating
+     *
+     * @return Rating
+     */
+    private function disableSubShopDeleteProtectionForRating(oxRating $rating)
+    {
+        $rating->setIsDerived(false);
+
+        return $rating;
     }
 
     /**
