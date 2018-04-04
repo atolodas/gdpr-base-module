@@ -22,13 +22,27 @@
 /**
  * @see oxViewConfig
  */
-class oeGdprViewConfig extends oeGdprViewConfig_parent
+class oeGdprBaseViewConfig extends oeGdprBaseViewConfig_parent
 {
     /**
      * @return bool
      */
     public function oeGdprBaseIsRecommendationsEnabled()
     {
-        return $this->getConfig()->getConfigParam('blOeGdprBaseAllowRecommendArticle');
+        return (bool) $this
+            ->getConfig()
+            ->getConfigParam('blOeGdprBaseAllowRecommendArticle');
+    }
+
+    /**
+     * Return true, if the review manager should be shown.
+     *
+     * @return bool
+     */
+    public function oeGdprBaseIsUserAllowedToManageOwnReviews()
+    {
+        return (bool) $this
+            ->getConfig()
+            ->getConfigParam('blOeGdprBaseAllowUsersToManageReviews');
     }
 }

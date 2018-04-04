@@ -35,5 +35,7 @@ $aLang = array(
     'OEGDPRBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Ihr Konto wurde gelöscht',
     'OEGDPRBASE_ERROR_REVIEW_AND_RATING_NOT_DELETED'     => 'Bewertung und Sterne-Rating konnten nicht gelöscht werden',
     'OEGDPRBASE_MY_REVIEWS'                              => 'Meine Bewertungen',
-
+    'OEGDPRBASE_DELETE_REVIEW_AND_RATING'                => 'Bewertung und Sterne-Rating löschen',
+    'OEGDPRBASE_REVIEWS_NOT_AVAILABLE'                   => 'Es liegen keine Bewertungen vor',
+    'OEGDPRBASE_DELETE_REVIEW_CONFIRMATION_QUESTION'     => 'Sind Sie sicher, dass Sie die Bewertung löschen wollen?',
 );

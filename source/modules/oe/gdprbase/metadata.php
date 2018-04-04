@@ -42,7 +42,7 @@ $aModule = array(
     'author'      => 'OXID eSales AG',
     'url'         => 'https://www.oxid-esales.com/',
     'email'       => 'info@oxid-esales.com',
-    'extend' => array(
+    'extend'      => array(
         'suggest'      => 'oe/gdprbase/controllers/oegdprbaserecommend',
         'account'      => 'oe/gdprbase/controllers/oegdprbaseaccount',
         'compare'      => 'oe/gdprbase/controllers/oegdprbasecompare',
@@ -50,9 +50,9 @@ $aModule = array(
         'oxrating'     => 'oe/gdprbase/models/oegdprbaseoxrating',
         'oxreview'     => 'oe/gdprbase/models/oegdprbaseoxreview',
         'oxuser'       => 'oe/gdprbase/models/oegdprbaseoxuser',
-        'oxviewconfig' => 'oe/gdprbase/core/oegdprviewconfig',
+        'oxviewconfig' => 'oe/gdprbase/core/oegdprbaseviewconfig',
     ),
-    'files'       => array(
+    'files' => array(
         'oegdprbasemodule'                  => 'oe/gdprbase/core/oegdprbasemodule.php',
         'oegdprbaseaccountreviewcontroller' => 'oe/gdprbase/controllers/oegdprbaseaccountreviewcontroller.php',
 
@@ -83,10 +83,14 @@ $aModule = array(
         'oegdprbasereviewandrating'                     => 'oe/gdprbase/internal/review/viewdataobject/oegdprbasereviewandrating.php',
     ),
     'templates' => array(
-        'oegdprbasedashboard_azure.tpl'                   => 'oe/gdprbase/views/blocks/page/account/oegdprbasedashboard_azure.tpl',
-        'oegdprbasedashboard_flow.tpl'                    => 'oe/gdprbase/views/blocks/page/account/oegdprbasedashboard_flow.tpl',
-        'oegdprbasedeletemyaccountconfirmation_azure_modal.tpl' => 'oe/gdprbase/views/blocks/page/account/oegdprbasedeletemyaccountconfirmation_azure_modal.tpl',
-        'oegdprbasedeletemyaccountconfirmation_flow_modal.tpl'  => 'oe/gdprbase/views/blocks/page/account/oegdprbasedeletemyaccountconfirmation_flow_modal.tpl',
+        'oegdprbasedashboard_azure.tpl'                            => 'oe/gdprbase/views/blocks/page/account/oegdprbasedashboard_azure.tpl',
+        'oegdprbasedashboard_flow.tpl'                             => 'oe/gdprbase/views/blocks/page/account/oegdprbasedashboard_flow.tpl',
+        'oegdprbaseaccountreviewaccount_menu_azure.tpl'            => 'oe/gdprbase/views/blocks/page/account/inc/oegdprbaseaccountreviewaccount_menu_azure.tpl',
+        'oegdprbaseaccountreviewcontroller.tpl'                    => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller.tpl',
+        'oegdprbaseaccountreviewcontroller_azure.tpl'              => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller_azure.tpl',
+        'oegdprbaseaccountreviewcontroller_confirmation_azure.tpl' => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller_confirmation_azure.tpl',
+        'oegdprbasedeletemyaccountconfirmation_azure_modal.tpl'    => 'oe/gdprbase/views/blocks/page/account/oegdprbasedeletemyaccountconfirmation_azure_modal.tpl',
+        'oegdprbasedeletemyaccountconfirmation_flow_modal.tpl'     => 'oe/gdprbase/views/blocks/page/account/oegdprbasedeletemyaccountconfirmation_flow_modal.tpl',
     ),
     'blocks'      => array(
         array('template' => 'layout/base.tpl', 'block'=>'base_style', 'file'=>'/views/blocks/layout/base.tpl'),
@@ -95,7 +99,8 @@ $aModule = array(
         array('template' => 'form/user_checkout_change.tpl', 'block'=>'user_checkout_change', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
         array('template' => 'form/user_checkout_noregistration.tpl', 'block'=>'user_checkout_noregistration', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
         array('template' => 'form/user_checkout_registration.tpl', 'block'=>'user_checkout_registration', 'file' => '/views/blocks/form/delete_shipping_address_modal.tpl'),
-        array('template' => 'page/account/dashboard.tpl', 'block'=>'account_dashboard_col1', 'file' => '/views/blocks/page/account/dashboard.tpl'),
+        array('template' => 'page/account/dashboard.tpl', 'block'=>'account_dashboard_col2', 'file' => '/views/blocks/page/account/dashboard.tpl'),
+        array('template' => 'page/account/inc/account_menu.tpl', 'block'=>'account_menu', 'file' => '/views/blocks/page/account/inc/account_menu.tpl'),
         array('template' => 'page/details/inc/productmain.tpl', 'block'=>'details_productmain_productlinks', 'file' => '/views/blocks/page/details/inc/productmain.tpl'),
     ),
     'settings' => array(

@@ -2,9 +2,9 @@
 
 [{*CSS Switch according theme*}]
 [{if $oViewConf->getActiveTheme() == 'azure'}]
-    [{oxstyle include=$oViewConf->getModuleUrl('oegdprbase','out/css/oegdprbase-azure.css')}]
+    [{oxstyle include=$oViewConf->getModuleUrl('gdprbase','out/css/oegdprbase-azure.css')}]
 [{else}]
-    [{oxstyle include=$oViewConf->getModuleUrl('oegdprbase','out/css/oegdprbase-flow.css')}]
+    [{oxstyle include=$oViewConf->getModuleUrl('gdprbase','out/css/oegdprbase-flow.css')}]
 [{/if}]
 
 [{*Message after account deletion*}]
