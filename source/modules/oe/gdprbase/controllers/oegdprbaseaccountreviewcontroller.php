@@ -56,6 +56,8 @@ class oeGdprBaseAccountReviewController extends oxUBase
 
     /**
      * Redirect to My Account, if validation does not pass.
+     *
+     * @throws oxSystemComponentException if a class name cannot be resolved
      */
     public function init()
     {
@@ -129,6 +131,10 @@ class oeGdprBaseAccountReviewController extends oxUBase
 
     /**
      * Delete review and rating, which belongs to the active user.
+     *
+     * @throws oeGdprBaseEntryDoesNotExistDaoException if a review or a rating does not exist
+     * @throws oeGdprBaseRatingPermissionException if the user has no permission to delete that rating
+     * @throws oeGdprBaseReviewPermissionException if the user has no permission to delete that review
      */
     public function oeGdprBaseDeleteReviewAndRating()
     {
@@ -200,6 +206,9 @@ class oeGdprBaseAccountReviewController extends oxUBase
 
     /**
      * Deletes Review.
+     *
+     * @throws oeGdprBaseEntryDoesNotExistDaoException if a review or a rating does not exist
+     * @throws oeGdprBaseReviewPermissionException if the user has no permission to delete that review
      */
     private function oeGdprBaseDeleteReview()
     {
@@ -214,6 +223,9 @@ class oeGdprBaseAccountReviewController extends oxUBase
 
     /**
      * Deletes Rating.
+     *
+     * @throws oeGdprBaseEntryDoesNotExistDaoException if a review or a rating does not exist
+     * @throws oeGdprBaseRatingPermissionException if the user has no permission to delete that rating
      */
     private function oeGdprBaseDeleteRating()
     {
@@ -248,6 +260,8 @@ class oeGdprBaseAccountReviewController extends oxUBase
 
     /**
      * Redirect to My Account dashboard
+     *
+     * @throws oxSystemComponentException if a class name cannot be resolved
      */
     private function oeGdprBaseRedirectToAccountDashboard()
     {
