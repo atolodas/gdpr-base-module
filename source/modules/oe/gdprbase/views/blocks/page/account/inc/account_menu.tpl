@@ -6,7 +6,7 @@
         [{ include file="oegdprbasedashboard_flow.tpl" }]
     [{else}]
         [{block name="oegdprbase_account_manage_reviews"}]
-        [{* Overwrite this block, if the above does not fit, because you are using a different theme *}]
+            [{* Overwrite this block, if the above does not fit, because you are using a different theme *}]
         [{/block}]
     [{/if}]
 [{/if}]

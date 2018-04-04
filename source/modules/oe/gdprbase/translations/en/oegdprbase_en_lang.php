@@ -35,7 +35,7 @@ $aLang = array(
     'OEGDPRBASE_SUCCESS_ACCOUNT_DELETED'                 => 'Your account has been deleted',
     'OEGDPRBASE_ERROR_REVIEW_AND_RATING_NOT_DELETED'     => 'The review and the star rating could not be deleted',
     'OEGDPRBASE_MY_REVIEWS'                              => 'My reviews',
-    'OEGDPRBASE_DELETE_REVIEW_AND_RATING'                           => 'Delete review and star rating',
-    'OEGDPRBASE_REVIEWS_NOT_AVAILABLE'                              => 'No reviews available',
-    'OEGDPRBASE_DELETE_REVIEW_CONFIRMATION_QUESTION'                => 'Are you sure you want to delete the review?',
+    'OEGDPRBASE_DELETE_REVIEW_AND_RATING'                => 'Delete review and star rating',
+    'OEGDPRBASE_REVIEWS_NOT_AVAILABLE'                   => 'No reviews available',
+    'OEGDPRBASE_DELETE_REVIEW_CONFIRMATION_QUESTION'     => 'Are you sure you want to delete the review?',
 );

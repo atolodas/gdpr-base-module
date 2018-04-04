@@ -45,3 +45,33 @@
     text-transform: uppercase;
     margin-right: 10px;
 }
+
+div.widgetBox.reviews.oegdprbase_account_reviewlist div.listRefine {
+    border-top: 1px solid #999;
+}
+
+div.widgetBox.reviews.oegdprbase_account_reviewlist div.refineParams {
+    text-align: center;
+}
+
+div.widgetBox.reviews.oegdprbase_account_reviewlist div.pager {
+    float: none;
+    background: none;
+}
+
+div.widgetBox.reviews.oegdprbase_account_reviewlist a.next {
+    float: right;
+}
+
+div.widgetBox.reviews.oegdprbase_account_reviewlist a.prev {
+    float: left;
+}
+
+div.widgetBox.reviews.oegdprbase_account_reviewlist .removeButton span {
+    float: none;
+    margin-right: 0;
+}
+
+div.widgetBox.reviews.oegdprbase_account_reviewlist ul.rating li {
+    cursor: default;
+}
