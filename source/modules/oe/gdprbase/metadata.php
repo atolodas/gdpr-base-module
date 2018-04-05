@@ -100,6 +100,7 @@ $aModule = array(
         'oegdprbaseaccountreviewcontroller.tpl'                    => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller.tpl',
         'oegdprbaseaccountreviewcontroller_azure.tpl'              => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller_azure.tpl',
         'oegdprbaseaccountreviewcontroller_flow.tpl'               => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller_flow.tpl',
+        'oegdprbaseaccountreviewcontroller_confirmation_azure.tpl' => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller_confirmation_azure.tpl',
         'oegdprbaseaccountreviewcontroller_confirmation_flow.tpl'  => 'oe/gdprbase/views/blocks/page/account/oegdprbaseaccountreviewcontroller_confirmation_flow.tpl',
     ),
     'blocks'      => array(
