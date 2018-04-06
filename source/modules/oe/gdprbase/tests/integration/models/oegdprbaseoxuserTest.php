@@ -84,7 +84,7 @@ class oeGdprBaseOxUserTest extends OxidTestCase
         $recommendationList = oxNew('oxrecommlist');
         $recommendationList->setId("_testRecommendationList");
         $recommendationList->oxrecommlists__oxuserid = new oxField($sUserId);
-        $recommendationList->oxrecommlists__oxshopid = new oxField(1);
+        $recommendationList->oxrecommlists__oxshopid = new oxField($this->getShopId());
         $recommendationList->oxrecommlists__oxtitle = new oxField("Test title");
         $recommendationList->save();
 
