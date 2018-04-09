@@ -91,6 +91,16 @@ class oeGdprBaseAccountReviewController extends Account
     }
 
     /**
+     * Template variable getter. Returns tag title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->oeGdprBaseGetTranslatedString('OEGDPRBASE_MY_REVIEWS');
+    }
+
+    /**
      * Generates the pagination.
      *
      * @return \stdClass

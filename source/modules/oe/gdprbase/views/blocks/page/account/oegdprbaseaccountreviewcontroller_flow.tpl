@@ -4,7 +4,7 @@
 
     [{block name="account_reviewlist_header"}]
         [{assign var="template_title" value="OEGDPRBASE_MY_REVIEWS"|oxmultilangassign}]
-        <h1 class="page-header">[{oxmultilang ident="OEGDPRBASE_MY_REVIEWS"}]</h1>
+        <h1 class="page-header">[{$oView->getTitle()}]</h1>
     [{/block}]
 
     [{block name="account_reviewlist_list"}]

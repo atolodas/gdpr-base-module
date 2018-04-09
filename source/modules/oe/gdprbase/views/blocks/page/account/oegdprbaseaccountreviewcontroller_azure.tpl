@@ -6,7 +6,7 @@
         [{assign var="locator" value=$oView->getPageNavigation()}]
 
         [{block name="oegdprbase_account_reviewlist_header"}]
-            <h1 class="pageHead">[{oxmultilang ident="OEGDPRBASE_MY_REVIEWS"}]</h1>
+            <h1 class="pageHead">[{$oView->getTitle()}]</h1>
             [{if $locator->changePage}]
             <div class="listRefine clear bottomRound oegdprbase_account_reviewlist">
                 [{include file="widget/locator/listlocator.tpl" locator=$locator }]
