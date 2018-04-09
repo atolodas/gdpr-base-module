@@ -238,4 +238,61 @@ class oeGdprBaseOxUserTest extends OxidTestCase
 
         return $oUser;
     }
+
+    /**
+     * Calling \oxBase::delete sets the MySQL FETCH_MODE of the current connection to oxDb::FETCH_MODE_ASSOC
+     * The implementation of this module resets it to the default as used in the shop.
+     */
+    public function testFetchModeIsReset()
+    {
+        $database = oxDb::getDb();
+        $query = 'SELECT 1 AS oxid';
+        $result = $database->getRow($query);
+        $this->assertArrayHasKey(0, $result);
+
+        $user = $this->createUser();
+        $userId = $user->getId();
+
+        $user = oxNew('oxUser');
+        $user->load($userId);
+        $user->delete();
+
+        $database = oxDb::getDb();
+        $query = 'SELECT 1 AS oxid';
+        $result = $database->getRow($query);
+        $this->assertArrayHasKey(0, $result);
+    }
+
+    /**
+     * Calling \oxBase::delete sets the MySQL FETCH_MODE of the current connection to oxDb::FETCH_MODE_ASSOC
+     * The implementation of this module resets it to the default as used in the shop.
+     * This should work even in case an exception was thrown.
+     */
+    public function testFetchModeIsResetAfterException()
+    {
+        $database = oxDb::getDb();
+        $query = 'SELECT 1 AS oxid';
+        $result = $database->getRow($query);
+        $this->assertArrayHasKey(0, $result);
+
+        $user = $this->createUser();
+        $userId = $user->getId();
+
+        try {
+            $userMock = $this->getMock('oxUser', array('oeGdprBaseDeleteRecommendationLists'));
+            $userMock
+                ->expects($this->any())
+                ->method('oeGdprBaseDeleteRecommendationLists')
+                ->will($this->throwException(new Exception('testFetchModeIsResetAfterException')));
+            $userMock->load($userId);
+            $userMock->delete();
+        } catch (Exception $exception) {
+
+        }
+
+        $database = oxDb::getDb();
+        $query = 'SELECT 1 AS oxid';
+        $result = $database->getRow($query);
+        $this->assertArrayHasKey(0, $result);
+    }
 }

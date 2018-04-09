@@ -27,16 +27,25 @@
  */
 class oeGdprBaseAccount extends oeGdprBaseAccount_parent
 {
-    private $oeGdprBaseIsUserDeleted = false;
+    private $oeGdprBaseIsUserDeleted;
 
     /**
      * Deletes User account.
      */
     public function oeGdprBaseDeleteAccount()
     {
-        if ($this->oeGdprBaseCanBeUserAccountDeleted()) {
-            $user = $this->getUser();
-            $user->delete();
+        $this->oeGdprBaseIsUserDeleted = false;
+        $user = $this->getUser();
+
+        /**
+         * Set derived to false so mall users are allowed to delete their account being in a different shop as the
+         * shop the account was originally created in.
+         */
+        if ($this->getConfig()->getConfigParam('blMallUsers')) {
+            $user->setIsDerived(false);
+        }
+
+        if ($this->oeGdprBaseCanBeUserAccountDeleted() && $user->delete()) {
             $user->logout();
             $session = $this->getSession();
             $session->destroy();

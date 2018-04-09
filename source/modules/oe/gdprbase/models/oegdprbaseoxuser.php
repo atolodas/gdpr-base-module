@@ -38,34 +38,45 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      * Additionally deletes recommendations and reviews when user is deleted.
      *
      * @param string $id
+     *
+     * @throws Exception exceptions are re-thrown
+     *
      * @return bool
      */
     public function delete($id = null)
     {
-        $isDeleted = parent::delete($id);
-        if ($isDeleted) {
-            $database = oxDb::getDb();
-            $this->oeGdprBaseDeleteRecommendationLists($database);
-            $this->oeGdprBaseDeleteReviews($database);
-            $this->oeGdprBaseDeleteRatings($database);
-            $this->oeGdprBasedeletePriceAlarms($database);
-            $this->oeGdprBasedeleteUserPayments($database);
-            $this->oeGdprBasedeleteAcceptedTerms($database);
+        try {
+            $isDeleted = parent::delete($id);
+            if ($isDeleted) {
+                $database = oxDb::getDb();
+                $this->oeGdprBaseDeleteRecommendationLists($database);
+                $this->oeGdprBaseDeleteReviews($database);
+                $this->oeGdprBaseDeleteRatings($database);
+                $this->oeGdprBasedeletePriceAlarms($database);
+                $this->oeGdprBasedeleteUserPayments($database);
+                $this->oeGdprBasedeleteAcceptedTerms($database);
+                $this->oeGdprBaseResetFetchModeToDefault();
+            }
+        } catch (Exception $exception) {
+            $this->oeGdprBaseResetFetchModeToDefault();
+            throw $exception;
         }
+
         return $isDeleted;
     }
 
     /**
      * Deletes recommendation lists.
+     *
+     * @param DatabaseInterface $database
      */
     protected function oeGdprBaseDeleteRecommendationLists($database)
     {
-        $recommendationList = $this->getUserRecommLists($this->getId());
-        /** @var oxRecommList $recommendation */
-        foreach ($recommendationList as $recommendation) {
-            $recommendation->delete();
-        }
-        $database->setFetchMode(DatabaseInterface::FETCH_MODE_NUM);
+        $ids = $database->getCol(
+            'SELECT oxid FROM oxrecommlists WHERE oxuserid = ? ',
+            array($this->getId())
+        );
+        array_walk($ids, array($this, 'oeGdprBaseDeleteItemById'), 'oxrecommlist');
     }
 
     /**
@@ -75,13 +86,11 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      */
     protected function oeGdprBaseDeleteReviews(DatabaseInterface $database)
     {
-        $reviews = $database->getAll('select OXID from oxreviews where oxuserid = ?', array($this->getId()));
-        foreach ($reviews as $reviewId) {
-            $review = oxNew('oxReview');
-            $review->load($reviewId[0]);
-            $review->delete();
-        }
-        $database->setFetchMode(DatabaseInterface::FETCH_MODE_NUM);
+        $ids = $database->getCol(
+            'SELECT oxid FROM oxreviews WHERE oxuserid = ?',
+            array($this->getId())
+        );
+        array_walk($ids, array($this, 'oeGdprBaseDeleteItemById'), 'oxreview');
     }
 
     /**
@@ -91,13 +100,11 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      */
     protected function oeGdprBaseDeleteRatings(DatabaseInterface $database)
     {
-        $ratings = $database->getAll('select OXID from oxratings where oxuserid = ?', array($this->getId()));
-        foreach ($ratings as $ratingId) {
-            $rating = oxNew('oxRating');
-            $rating->load($ratingId[0]);
-            $rating->delete();
-        }
-        $database->setFetchMode(DatabaseInterface::FETCH_MODE_NUM);
+        $ids = $database->getCol(
+            'SELECT oxid FROM oxratings WHERE oxuserid = ?',
+            array($this->getId())
+        );
+        array_walk($ids, array($this, 'oeGdprBaseDeleteItemById'), 'oxrating');
     }
 
     /**
@@ -105,12 +112,13 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeGdprBasedeletePriceAlarms(DatabaseInterface $database)
+    protected function oeGdprBaseDeletePriceAlarms(DatabaseInterface $database)
     {
-        $database->execute(
-            'delete from oxpricealarm where oxuserid = ?',
+        $ids = $database->getCol(
+            'SELECT oxid FROM oxpricealarm WHERE oxuserid = ?',
             array($this->getId())
         );
+        array_walk($ids, array($this, 'oeGdprBaseDeleteItemById'), 'oxpricealarm');
     }
 
     /**
@@ -118,12 +126,13 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeGdprBasedeleteUserPayments(DatabaseInterface $database)
+    protected function oeGdprBaseDeleteUserPayments(DatabaseInterface $database)
     {
-        $database->execute(
-            'delete from oxuserpayments where oxuserid = ?',
+        $ids = $database->getCol(
+            'SELECT oxid FROM oxuserpayments WHERE oxuserid = ?',
             array($this->getId())
         );
+        array_walk($ids, array($this, 'oeGdprBaseDeleteItemById'), 'oxuserpayment');
     }
 
     /**
@@ -131,11 +140,40 @@ class oeGdprBaseOxuser extends oeGdprBaseOxuser_parent
      *
      * @param DatabaseInterface $database
      */
-    protected function oeGdprBasedeleteAcceptedTerms(DatabaseInterface $database)
+    protected function oeGdprBaseDeleteAcceptedTerms(DatabaseInterface $database)
     {
         $database->execute(
-            'delete from oxacceptedterms where oxuserid = ?',
+            'DELETE FROM oxacceptedterms WHERE oxuserid = ?',
             array($this->getId())
         );
+    }
+
+
+    /**
+     * Callback function for array_walk to delete items using the delete method of the given model class
+     *
+     * @param string  $id        Id of the item to be deleted
+     * @param integer $key       Key of the array
+     * @param string  $className Model class to be used
+     */
+    protected function oeGdprBaseDeleteItemById($id, $key, $className)
+    {
+        /** @var oxBase $modelObject */
+        $modelObject = oxNew($className);
+
+        if ($modelObject->load($id)) {
+            if ($this->_blMallUsers) {
+                $modelObject->setIsDerived(false);
+            }
+            $modelObject->delete();
+        }
+    }
+
+    /**
+     * Reset the fetch mode of an open database connection to the one it is set by default.
+     */
+    protected function oeGdprBaseResetFetchModeToDefault()
+    {
+        oxDb::getDb();
     }
 }

@@ -26,7 +26,7 @@
  *
  * @see oxUBase
  */
-class oeGdprBaseAccountReviewController extends oxUBase
+class oeGdprBaseAccountReviewController extends Account
 {
     /**
      * Controller template name.
@@ -67,6 +67,7 @@ class oeGdprBaseAccountReviewController extends oxUBase
 
         parent::init();
     }
+
 
     /**
      * Returns Bread Crumb - you are here page1/page2/page3...
