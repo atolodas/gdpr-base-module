@@ -81,6 +81,12 @@
         </div>
     [{/block}]
 
+    [{block name="account_reviewlist_locator"}]
+        [{include file="widget/locator/listlocator.tpl" locator=$oView->getPageNavigation() place="bottom"}]
+    [{/block}]
+
+    [{insert name="oxid_tracker" title=$template_title}]
+
 [{/capture}]
 [{capture append="oxidBlock_sidebar"}]
     [{include file="page/account/inc/account_menu.tpl" active_link="reviewlist"}]
