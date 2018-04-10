@@ -2,18 +2,18 @@
 
     [{oxscript include="js/widgets/oxlistremovebutton.min.js" priority=10}]
 
-    [{block name="account_reviewlist_header"}]
+    [{block name="oegdprbase_account_reviewlist_header"}]
         [{assign var="template_title" value="OEGDPRBASE_MY_REVIEWS"|oxmultilangassign}]
         <h1 class="page-header">[{$oView->getTitle()}]</h1>
     [{/block}]
 
-    [{block name="account_reviewlist_list"}]
+    [{block name="oegdprbase_account_reviewlist_list"}]
         <div id="review">
             [{if $oView->oeGdprBaseGetReviewAndRatingItemsCount() }]
                 <div class="spacer"></div>
                 <div class="reviews-landscape">
                     [{foreach from=$oView->oeGdprBaseGetReviewList() item=review name=ReviewsCounter}]
-                        [{block name="account_reviewlist_item"}]
+                        [{block name="oegdprbase_account_reviewlist_item"}]
                             <div class="panel panel-default" id="reviewName_[{$smarty.foreach.ReviewsCounter.iteration}]" itemprop="review" itemscope itemtype="http://schema.org/Review">
                                 <div class="panel-heading">
                                     <div class="row">
@@ -38,7 +38,7 @@
                                                 </div>
                                             [{/if}]
                                         </div>
-                                        [{block name="account_reviewlist_item_action"}]
+                                        [{block name="oegdprbase_account_reviewlist_item_action"}]
                                             <div class="col-md-1 pull-right">
                                                 <div class="actions text-center">
                                                     <div class="btn-group">
@@ -72,7 +72,7 @@
                     [{/foreach}]
                 </div>
             [{else}]
-                [{block name="account_reviewlist_no_reviews_available"}]
+                [{block name="oegdprbase_account_reviewlist_no_reviews_available"}]
                     <div class="alert alert-info">
                         [{oxmultilang ident="OEGDPRBASE_REVIEWS_NOT_AVAILABLE"}]
                     </div>
@@ -81,7 +81,7 @@
         </div>
     [{/block}]
 
-    [{block name="account_reviewlist_locator"}]
+    [{block name="oegdprbase_account_reviewlist_locator"}]
         [{include file="widget/locator/listlocator.tpl" locator=$oView->getPageNavigation() place="bottom"}]
     [{/block}]
 
