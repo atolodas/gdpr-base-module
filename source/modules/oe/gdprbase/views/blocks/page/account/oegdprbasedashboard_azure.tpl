@@ -19,8 +19,7 @@
             });
          '}]
     [{/if}]
-
- [{/block}]
+[{/block}]
 [{if $oView->oeGdprBaseIsUserAllowedToManageOwnReviews()}]
     <dl>
         <dt><a href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=oegdprbaseaccountreviewcontroller" }]">[{ oxmultilang ident="OEGDPRBASE_MY_REVIEWS" }]</a></dt>

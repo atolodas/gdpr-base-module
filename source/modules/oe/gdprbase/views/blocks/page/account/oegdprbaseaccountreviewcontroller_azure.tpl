@@ -75,5 +75,3 @@
     [{include file="page/account/inc/account_menu.tpl" active_link="oegdprbase_reviewlist"}]
 [{/capture}]
 [{include file="layout/page.tpl" sidebar="Left"}]
-
-
